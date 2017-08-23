@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Employee" table="employee" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empType" class="pojo.EmpType" fetch="select">
+            <column name="type_id" not-null="true" />
+        </many-to-one>
+        <property name="fname" type="string">
+            <column name="fname" length="45" />
+        </property>
+        <property name="mname" type="string">
+            <column name="mname" length="45" />
+        </property>
+        <property name="lname" type="string">
+            <column name="lname" length="45" />
+        </property>
+        <property name="sname" type="string">
+            <column name="sname" length="45" />
+        </property>
+        <property name="nic" type="string">
+            <column name="nic" length="45" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="45" />
+        </property>
+        <property name="adressLine1" type="string">
+            <column name="adress_line1" length="200" />
+        </property>
+        <property name="adressLine2" type="string">
+            <column name="adress_line2" length="200" />
+        </property>
+        <property name="phone1" type="string">
+            <column name="phone1" length="45" />
+        </property>
+        <property name="phone2" type="string">
+            <column name="phone2" length="45" />
+        </property>
+        <property name="currentCredit" type="java.lang.Double">
+            <column name="current_credit" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <set name="deliveriesForPartner2" table="delivery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="partner2" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Delivery" />
+        </set>
+        <set name="logins" table="login" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employee_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Login" />
+        </set>
+        <set name="basicSaleries" table="basic_salery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employee_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.BasicSalery" />
+        </set>
+        <set name="deliveriesForPartner1" table="delivery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="partner1" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Delivery" />
+        </set>
+        <set name="deliveriesForDriver" table="delivery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="driver" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Delivery" />
+        </set>
+        <set name="attenenceLogs" table="attenence_log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employee_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.AttenenceLog" />
+        </set>
+        <set name="empCredits" table="emp_credit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employee_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.EmpCredit" />
+        </set>
+        <set name="salaries" table="salary" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employee_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Salary" />
+        </set>
+    </class>
+</hibernate-mapping>

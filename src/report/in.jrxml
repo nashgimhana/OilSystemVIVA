@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-07-17T13:11:47 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="in" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85b8ced9-52b2-4340-b727-3fc4a48c51e9">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="inid" class="java.lang.Integer"/>
+	<parameter name="credit" class="java.lang.Double"/>
+	<queryString>
+		<![CDATA[SELECT * FROM invoice 
+INNER JOIN invoice_log ON invoice.ID = invoice_log.invoice_id 
+INNER JOIN grn_log ON invoice_log.log_id = grn_log.id
+INNER JOIN product ON grn_log.product_id = product.id
+INNER JOIN customer ON customer.id = invoice.customer_id WHERE invoice.id = $P{inid}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pay_status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customer_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_5" class="java.lang.Integer"/>
+	<field name="qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="log_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="price" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="invoice_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_11" class="java.lang.Integer"/>
+	<field name="grn_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="product_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="buying_price" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantity" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="remaining_quantity" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_17" class="java.lang.Double"/>
+	<field name="COLUMN_18" class="java.lang.Integer"/>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="units_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="current_stock" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="current_price" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_23" class="java.lang.Integer"/>
+	<field name="fname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nic" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adress_line1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adress_line2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="phone1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="phone2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="credit" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="sumpro" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{total}]]></initialValueExpression>
+	</variable>
+	<group name="id">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+	</group>
+	<group name="date">
+		<groupExpression><![CDATA[$F{date}]]></groupExpression>
+	</group>
+	<group name="pay_status">
+		<groupExpression><![CDATA[$F{pay_status}]]></groupExpression>
+	</group>
+	<group name="customer_id">
+		<groupExpression><![CDATA[$F{customer_id}]]></groupExpression>
+	</group>
+	<group name="COLUMN_5">
+		<groupExpression><![CDATA[$F{COLUMN_5}]]></groupExpression>
+	</group>
+	<group name="qty">
+		<groupExpression><![CDATA[$F{qty}]]></groupExpression>
+	</group>
+	<group name="log_id">
+		<groupExpression><![CDATA[$F{log_id}]]></groupExpression>
+	</group>
+	<group name="price">
+		<groupExpression><![CDATA[$F{price}]]></groupExpression>
+	</group>
+	<group name="invoice_id">
+		<groupExpression><![CDATA[$F{invoice_id}]]></groupExpression>
+	</group>
+	<group name="total">
+		<groupExpression><![CDATA[$F{total}]]></groupExpression>
+	</group>
+	<group name="COLUMN_11">
+		<groupExpression><![CDATA[$F{COLUMN_11}]]></groupExpression>
+	</group>
+	<group name="grn_id">
+		<groupExpression><![CDATA[$F{grn_id}]]></groupExpression>
+	</group>
+	<group name="product_id">
+		<groupExpression><![CDATA[$F{product_id}]]></groupExpression>
+	</group>
+	<group name="buying_price">
+		<groupExpression><![CDATA[$F{buying_price}]]></groupExpression>
+	</group>
+	<group name="quantity">
+		<groupExpression><![CDATA[$F{quantity}]]></groupExpression>
+	</group>
+	<group name="remaining_quantity">
+		<groupExpression><![CDATA[$F{remaining_quantity}]]></groupExpression>
+	</group>
+	<group name="COLUMN_17">
+		<groupExpression><![CDATA[$F{COLUMN_17}]]></groupExpression>
+	</group>
+	<group name="COLUMN_18">
+		<groupExpression><![CDATA[$F{COLUMN_18}]]></groupExpression>
+	</group>
+	<group name="name">
+		<groupExpression><![CDATA[$F{name}]]></groupExpression>
+	</group>
+	<group name="units_id">
+		<groupExpression><![CDATA[$F{units_id}]]></groupExpression>
+	</group>
+	<group name="current_stock">
+		<groupExpression><![CDATA[$F{current_stock}]]></groupExpression>
+	</group>
+	<group name="current_price">
+		<groupExpression><![CDATA[$F{current_price}]]></groupExpression>
+	</group>
+	<group name="COLUMN_23">
+		<groupExpression><![CDATA[$F{COLUMN_23}]]></groupExpression>
+	</group>
+	<group name="fname">
+		<groupExpression><![CDATA[$F{fname}]]></groupExpression>
+	</group>
+	<group name="mname">
+		<groupExpression><![CDATA[$F{mname}]]></groupExpression>
+	</group>
+	<group name="lname">
+		<groupExpression><![CDATA[$F{lname}]]></groupExpression>
+	</group>
+	<group name="nic">
+		<groupExpression><![CDATA[$F{nic}]]></groupExpression>
+	</group>
+	<group name="gender">
+		<groupExpression><![CDATA[$F{gender}]]></groupExpression>
+	</group>
+	<group name="adress_line1">
+		<groupExpression><![CDATA[$F{adress_line1}]]></groupExpression>
+	</group>
+	<group name="adress_line2">
+		<groupExpression><![CDATA[$F{adress_line2}]]></groupExpression>
+	</group>
+	<group name="phone1">
+		<groupExpression><![CDATA[$F{phone1}]]></groupExpression>
+	</group>
+	<group name="phone2">
+		<groupExpression><![CDATA[$F{phone2}]]></groupExpression>
+	</group>
+	<group name="credit">
+		<groupExpression><![CDATA[$F{credit}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="40" y="10" width="460" height="30" uuid="1f455292-56f4-4ed0-8b16-cf4f5cf46c5e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tw Cen MT" size="20"/>
+				</textElement>
+				<text><![CDATA[KALPANI OLI DELEVERS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="40" width="195" height="20" uuid="ffb6ac17-9a5b-45e7-a696-560794aaa1e4"/>
+				<text><![CDATA[ARALAGANVILA, POLONNARUWA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="20" width="100" height="20" uuid="5c50b95f-49e3-4a45-907f-c4ab4ffacf75"/>
+				<textFieldExpression><![CDATA[$F{invoice_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="40" width="100" height="20" uuid="524ac949-e0a1-404d-84b2-51efe3775dd8"/>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="0" width="80" height="20" uuid="63a57924-839f-4bb9-be8a-eb9a0f540cb3"/>
+				<textFieldExpression><![CDATA[$F{fname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="60" height="20" uuid="e41780fe-3513-47f7-baf1-20c78897bf0a"/>
+				<textFieldExpression><![CDATA[$F{mname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="88" height="20" uuid="17360d09-f4b5-41ea-b495-e709f72aebe8"/>
+				<textFieldExpression><![CDATA[$F{lname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="230" y="0" width="70" height="20" uuid="ec16c77a-68fc-4b0d-a80c-964d50a3c48e"/>
+				<text><![CDATA[CUSTOMER :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="70" height="20" uuid="43226b56-7ad7-4c05-92e8-9050c2cc700b"/>
+				<text><![CDATA[INVOICE #:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="70" height="20" uuid="777445a4-1712-4489-94ab-f45ce3a014b8"/>
+				<text><![CDATA[DATE :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="550" height="1" uuid="28d42653-6cbe-4935-981a-af93ed835022"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="7" width="100" height="30" uuid="ce516405-3079-4176-96b0-271a30551093"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="7" width="100" height="23" uuid="98aed77c-44ae-4f38-b7dd-62dc6efe99a7"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="7" width="100" height="23" uuid="73437ab8-79d2-4dfc-86bb-a1bdc3f68793"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="9" width="100" height="21" uuid="c101b086-97fa-46aa-b574-ebeec52eb49d"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="56" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="-3" width="100" height="23" uuid="41f37178-79e9-42f7-b9f6-920ee2726908"/>
+				<textElement>
+					<font fontName="Tw Cen MT Condensed" size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="-3" width="100" height="23" uuid="94ea7aa0-042d-486f-bb22-a135cfa54527"/>
+				<textElement>
+					<font fontName="Tw Cen MT Condensed" size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="-4" width="100" height="24" uuid="0dff01e5-318e-4f32-b191-e6d0a88bcb4a"/>
+				<textElement>
+					<font fontName="Tw Cen MT Condensed" size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="-1" width="100" height="21" uuid="dda315e5-241e-4fd7-83a0-b29b79d306f8"/>
+				<textElement>
+					<font fontName="Tw Cen MT Condensed" size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="42" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="130" y="1" width="200" height="20" uuid="e560e33f-0465-497b-ad42-3795321182eb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Bauhaus 93"/>
+				</textElement>
+				<text><![CDATA[THANK YOU CAME AGAIN..]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="38" width="139" height="13" uuid="d2e4db14-2253-4d03-ac42-5e1a5339298e"/>
+				<text><![CDATA[Xocodes software developers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="38" width="128" height="15" uuid="6a9d0d7c-5ea3-45d3-9350-98fdadab8526"/>
+				<text><![CDATA[0713470480/0711998310]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="68" splitType="Stretch">
+			<textField>
+				<reportElement x="410" y="2" width="100" height="30" uuid="f773b3d1-5f0d-4fea-8ba8-f2089b80fbfa"/>
+				<textElement textAlignment="Right">
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumpro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="30" width="68" height="30" uuid="c9716fab-0482-404d-ab6e-c837dc28ae49"/>
+				<textElement>
+					<font fontName="Tw Cen MT" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="2" width="88" height="30" uuid="d7332598-4756-468f-a869-34d336c4d565"/>
+				<textElement>
+					<font fontName="Tw Cen MT" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Full Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="30" width="100" height="30" uuid="7590b040-e379-4835-8176-6ca88481d8bc"/>
+				<textElement textAlignment="Right">
+					<font fontName="Trebuchet MS" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{credit}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="550" height="1" uuid="13b38da7-8d44-4f59-b481-6c72161b206d"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

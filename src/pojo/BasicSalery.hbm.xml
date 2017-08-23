@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.BasicSalery" table="basic_salery" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="employee" class="pojo.Employee" fetch="select">
+            <column name="employee_id" not-null="true" />
+        </many-to-one>
+        <property name="basicSalery" type="java.lang.Double">
+            <column name="`basic salery`" precision="22" scale="0" />
+        </property>
+        <property name="bonus" type="java.lang.Double">
+            <column name="bonus" precision="22" scale="0" />
+        </property>
+        <property name="perDay" type="java.lang.Double">
+            <column name="per_day" precision="22" scale="0" />
+        </property>
+        <property name="perOtHoure" type="java.lang.Double">
+            <column name="per_ot_houre" precision="22" scale="0" />
+        </property>
+        <property name="houres" type="java.lang.Double">
+            <column name="houres" precision="22" scale="0" />
+        </property>
+        <property name="mainusDebit" type="java.lang.Double">
+            <column name="mainus_debit" precision="22" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <property name="pay" type="java.lang.Double">
+            <column name="pay" precision="22" scale="0" />
+        </property>
+        <property name="updateday" type="date">
+            <column name="updateday" length="10" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="basicSalerycol" type="string">
+            <column name="basic_salerycol" length="45" />
+        </property>
+        <set name="salaries" table="salary" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="basic_salery_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Salary" />
+        </set>
+    </class>
+</hibernate-mapping>

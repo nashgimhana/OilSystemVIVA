@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Cheques" table="cheques" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="bank" class="pojo.Bank" fetch="select">
+            <column name="bank_id" not-null="true" />
+        </many-to-one>
+        <property name="checkno" type="string">
+            <column name="checkno" length="100" />
+        </property>
+        <property name="chequeAmount" type="java.lang.Double">
+            <column name="cheque_amount" precision="22" scale="0" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="discription" type="string">
+            <column name="discription" length="200" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="chequeDate" type="date">
+            <column name="cheque_date" length="10" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="2" />
+        </property>
+        <set name="dealCheques" table="deal_cheque" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cheques" not-null="true" />
+            </key>
+            <one-to-many class="pojo.DealCheque" />
+        </set>
+    </class>
+</hibernate-mapping>

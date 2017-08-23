@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2017-07-17T08:52:58 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sp" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bcf8277-59d1-402b-82de-68e0397ece7c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="empid" class="java.lang.Integer"/>
+	<parameter name="bsid" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT SUM(attenence_log.`status`)as'attend', employee.sname, employee.fname, employee.mname, employee.lname, employee.nic,
+basic_salery.`basic salery`, basic_salery.bonus,basic_salery.per_ot_houre,basic_salery.houres,basic_salery.per_day,basic_salery.total,basic_salery.mainus_debit,basic_salery.pay,
+basic_salery.updateday
+FROM basic_salery
+INNER JOIN employee ON employee.id = basic_salery.employee_id 
+INNER JOIN attenence_log on attenence_log.employee_id = employee.id
+INNER JOIN attendence on attendence.id = attenence_log.attendence_id 
+WHERE employee.id = $P{empid}  and basic_salery.id =  $P{bsid}  and attenence_log.`status` = 1;]]>
+	</queryString>
+	<field name="attend" class="java.lang.Double"/>
+	<field name="sname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nic" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="basic salery" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bonus" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="per_ot_houre" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="houres" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="per_day" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mainus_debit" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pay" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="updateday" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="otsal" class="java.lang.Double" calculation="StandardDeviation">
+		<variableExpression><![CDATA[$F{per_ot_houre}*$F{houres}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{per_ot_houre}*$F{houres}]]></initialValueExpression>
+	</variable>
+	<variable name="FullName" class="java.lang.String" calculation="Sum"/>
+	<variable name="daysal" class="java.lang.Double" calculation="StandardDeviation">
+		<variableExpression><![CDATA[$F{attend}*$F{per_day}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{attend}*$F{per_day}]]></initialValueExpression>
+	</variable>
+	<group name="attend">
+		<groupExpression><![CDATA[$F{attend}]]></groupExpression>
+	</group>
+	<group name="sname">
+		<groupExpression><![CDATA[$F{sname}]]></groupExpression>
+	</group>
+	<group name="fname">
+		<groupExpression><![CDATA[$F{fname}]]></groupExpression>
+	</group>
+	<group name="mname">
+		<groupExpression><![CDATA[$F{mname}]]></groupExpression>
+	</group>
+	<group name="lname">
+		<groupExpression><![CDATA[$F{lname}]]></groupExpression>
+	</group>
+	<group name="nic">
+		<groupExpression><![CDATA[$F{nic}]]></groupExpression>
+	</group>
+	<group name="basic salery">
+		<groupExpression><![CDATA[$F{basic salery}]]></groupExpression>
+	</group>
+	<group name="bonus">
+		<groupExpression><![CDATA[$F{bonus}]]></groupExpression>
+	</group>
+	<group name="per_ot_houre">
+		<groupExpression><![CDATA[$F{per_ot_houre}]]></groupExpression>
+	</group>
+	<group name="houres">
+		<groupExpression><![CDATA[$F{houres}]]></groupExpression>
+	</group>
+	<group name="per_day">
+		<groupExpression><![CDATA[$F{per_day}]]></groupExpression>
+	</group>
+	<group name="total">
+		<groupExpression><![CDATA[$F{total}]]></groupExpression>
+	</group>
+	<group name="mainus_debit">
+		<groupExpression><![CDATA[$F{mainus_debit}]]></groupExpression>
+	</group>
+	<group name="pay">
+		<groupExpression><![CDATA[$F{pay}]]></groupExpression>
+	</group>
+	<group name="date">
+		<groupExpression><![CDATA[$F{updateday}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="-13" width="556" height="40" uuid="8c0ba04f-b040-4551-b547-d170f711e853"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kalpani Oil Delivers - Pay Sheet]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="30" width="100" height="20" uuid="f64f4627-0ba3-4e73-a734-d093dbbc78fc"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{updateday}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="27" width="210" height="23" uuid="38b56883-889d-4b4c-bc46-08973020e792"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nic}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="49" width="110" height="20" uuid="78503ef2-68ac-4d9c-bd00-e8191019800c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="50" width="150" height="18" uuid="612965d9-5fc5-45df-8386-0d98d150bd48"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="50" width="150" height="18" uuid="4ae30a63-4432-4bd8-b579-ff85d9671041"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="50" width="100" height="18" uuid="94a8cbc9-a88a-4fad-8634-42ca0304c523"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="27" width="60" height="22" uuid="79d36b48-8c97-4446-a54c-c90d9c565391"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[NIC :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="289" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="32" width="100" height="19" uuid="cbc60d6d-e846-4f69-8e5b-fedd295b7a70"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Basic]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="32" width="100" height="18" uuid="a5bc918c-0a22-4852-933c-6739feecc292"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{basic salery}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="20" y="110" width="509" height="1" uuid="679a4fa8-e0b6-4f26-9abe-714f57c20f17"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="60" width="100" height="19" uuid="687eea4e-6c7c-4cee-b9b2-f201426dcc7d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Bonus]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="2" width="507" height="1" uuid="634372b3-a1d9-4a71-a5eb-18c119904b38">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="430" y="60" width="100" height="18" uuid="5f06f81f-75af-4a1a-b842-4734c4312cd1"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bonus}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="250" y="90" width="30" height="20" uuid="fd80330f-2360-43f3-bfea-b0fca105a10e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Rate]]></text>
+			</staticText>
+			<line>
+				<reportElement x="20" y="80" width="509" height="1" uuid="a20d5eb9-594d-48c4-9c50-d99b69063784"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="90" width="100" height="20" uuid="73d005d6-fd61-49a7-a8fa-7483e2852d71"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Working Day Sallary]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="89" width="60" height="22" uuid="221a9325-380b-4979-9347-68df79b9bc76"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{attend}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="89" width="70" height="20" uuid="5d1a9dc1-9be8-4d9d-ba22-25bc778fc254"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{per_day}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="89" width="100" height="20" uuid="2e29f978-cd3d-4b4e-9014-aaf67c70822e"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{daysal}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="20" y="50" width="508" height="1" uuid="c5c86e09-7783-451b-ac61-20183bd57882"/>
+			</line>
+			<line>
+				<reportElement x="20" y="144" width="509" height="1" uuid="f230a5c0-bb5d-4aff-85e1-f78c0336ab1f"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="124" width="100" height="20" uuid="6cfcd6c1-adf5-44e2-82f4-0d9dbb84fcc3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[OT Hours]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="125" width="60" height="18" uuid="5d7545fe-9064-4207-bed4-15dee2c09237"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{houres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="250" y="124" width="30" height="20" uuid="2efbd5e9-3816-4e9b-bb97-71e104c4b898"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Rate]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="124" width="70" height="20" uuid="9eb7b2c6-c217-4f4d-8643-7248de9335b8"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{per_ot_houre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="120" width="100" height="24" uuid="828a3ed0-694d-44d5-b751-c9b83ecc5eb1"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{otsal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="150" width="100" height="20" uuid="95b76685-9198-41fe-9f10-47cc3efc1f25"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="170" width="509" height="1" uuid="61c1cc50-b052-4585-9e72-93a30097544b"/>
+			</line>
+			<textField>
+				<reportElement x="430" y="150" width="100" height="20" uuid="41397ec5-a0a9-4310-a457-8dc4ba9e464d"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="190" width="100" height="20" forecolor="#800200" uuid="cc47ad1a-83b6-444f-8015-d5052992ddb8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Cut For Debit]]></text>
+			</staticText>
+			<line>
+				<reportElement x="19" y="210" width="509" height="1" uuid="7a2fc331-0774-4b8b-8044-c6c4a6a9f954"/>
+			</line>
+			<textField>
+				<reportElement x="430" y="190" width="100" height="20" forecolor="#8C0200" uuid="10867599-3022-4e47-83e4-f4ffda3c0b31"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mainus_debit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="221" width="100" height="29" forecolor="#000000" uuid="0cf29357-714b-422f-80df-f97e9146baac"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Pay]]></text>
+			</staticText>
+			<line>
+				<reportElement x="20" y="250" width="509" height="1" uuid="7797b4e6-c418-428d-9f09-aaff74baa05a"/>
+			</line>
+			<textField>
+				<reportElement x="430" y="221" width="100" height="30" uuid="196c2560-271e-4c90-988f-98f4a908580d"/>
+				<textElement textAlignment="Right">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pay}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="261" width="556" height="20" forecolor="#001BB5" uuid="821ddccf-e588-42b3-ad44-5bd670875b28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[XOcodes Software Team     -     0713470485]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

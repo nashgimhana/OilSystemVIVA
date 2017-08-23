@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.MoneyBook" table="money_book" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="dealCategory" class="pojo.DealCategory" fetch="select">
+            <column name="deal_category" not-null="true" />
+        </many-to-one>
+        <many-to-one name="dealType" class="pojo.DealType" fetch="select">
+            <column name="deal_type" not-null="true" />
+        </many-to-one>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="dscription" type="string">
+            <column name="dscription" length="200" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" precision="22" scale="0" />
+        </property>
+        <set name="invoicePays" table="invoice_pay" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="money_book_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.InvoicePay" />
+        </set>
+        <set name="salaries" table="salary" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="money_book_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Salary" />
+        </set>
+        <set name="customerPays" table="customer_pay" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="money_book" not-null="true" />
+            </key>
+            <one-to-many class="pojo.CustomerPay" />
+        </set>
+        <set name="routeDebits" table="route_debit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="money_book_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.RouteDebit" />
+        </set>
+        <set name="empCredits" table="emp_credit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="money_book_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.EmpCredit" />
+        </set>
+        <set name="supplierPays" table="supplier_pay" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="money_book" not-null="true" />
+            </key>
+            <one-to-many class="pojo.SupplierPay" />
+        </set>
+        <set name="shopTransferLogs" table="shop_transfer_log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="money_book_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.ShopTransferLog" />
+        </set>
+    </class>
+</hibernate-mapping>

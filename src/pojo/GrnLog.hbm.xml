@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.GrnLog" table="grn_log" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="grn" class="pojo.Grn" fetch="select">
+            <column name="grn_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="pojo.Product" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
+        <property name="buyingPrice" type="java.lang.Double">
+            <column name="buying_price" precision="22" scale="0" />
+        </property>
+        <property name="quantity" type="java.lang.Double">
+            <column name="quantity" precision="22" scale="0" />
+        </property>
+        <property name="remainingQuantity" type="java.lang.Double">
+            <column name="remaining_quantity" precision="22" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <set name="losts" table="lost" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="grn_log_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Lost" />
+        </set>
+        <set name="productionLogMixes" table="production_log_mix" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="grn_log_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.ProductionLogMix" />
+        </set>
+        <set name="productionLogBottles" table="production_log_bottle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="grn_log_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.ProductionLogBottle" />
+        </set>
+        <set name="deliveryItemLogs" table="delivery_item_log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="grn_log_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.DeliveryItemLog" />
+        </set>
+        <set name="shopTransferLogs" table="shop_transfer_log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="grn_log_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.ShopTransferLog" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+try {
+             double bal = Double.parseDouble(lblBalance.getText());
+            invoiceSave = new InvoiceSave();
+            saveInv = invoiceSave.saveInv(Customer, DateChooser);
+            invoiceSave.saveInvLog(saveInv, jTable);
+            invoicePayment = new c.InvoicePayment();
+            double CashPayTot = Double.parseDouble(lblCashPayTot.getText());
+            double ChequePayTot = Double.parseDouble(lblChequePayTot.getText());
+            if (check_cash.isSelected() && CashPayTot != 00.0) {
+                invoicePayment.cashpay(DateChooser, Customer, lblBalance, lblCashPayTot);
+            }
+            if (check_Cheque.isSelected() && ChequePayTot!=00.0) {
+                invoicePayment.chequepay(DateChooser, Customer, lblBalance, lblChequePayTot,tblCheque);
+            }
+            invoicePayment = new c.InvoicePayment();
+            invoicePayment.credit(DateChooser, lblBalance, Customer, lblmsg);
+            new report.Psmodle().invoiceReport(saveInv, bal);
+            this.dispose();
+        } catch (Exception e) {
+        }

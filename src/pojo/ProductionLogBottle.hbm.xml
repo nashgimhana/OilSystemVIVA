@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.ProductionLogBottle" table="production_log_bottle" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="grnLog" class="pojo.GrnLog" fetch="select">
+            <column name="grn_log_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="productByBottleProductId" class="pojo.Product" fetch="select">
+            <column name="bottle_product_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="productByProductId" class="pojo.Product" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
+        <property name="productQty" type="java.lang.Double">
+            <column name="product_qty" precision="22" scale="0" />
+        </property>
+        <property name="btlQuantity" type="java.lang.Double">
+            <column name="btl_quantity" precision="22" scale="0" />
+        </property>
+        <property name="costPerBottle" type="java.lang.Double">
+            <column name="cost_per_bottle" precision="22" scale="0" />
+        </property>
+        <property name="labelCost" type="java.lang.Double">
+            <column name="label_cost" precision="22" scale="0" />
+        </property>
+        <property name="otherCosts" type="java.lang.Double">
+            <column name="other_costs" precision="22" scale="0" />
+        </property>
+        <property name="productPrice" type="java.lang.Double">
+            <column name="product_price" precision="22" scale="0" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

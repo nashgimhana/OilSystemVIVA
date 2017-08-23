@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.ProductionLogMix" table="production_log_mix" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="grnLog" class="pojo.GrnLog" fetch="select">
+            <column name="grn_log_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="productByProduct1" class="pojo.Product" fetch="select">
+            <column name="product1" not-null="true" />
+        </many-to-one>
+        <many-to-one name="productByProduct2" class="pojo.Product" fetch="select">
+            <column name="product2" not-null="true" />
+        </many-to-one>
+        <property name="product1Quantity" type="java.lang.Double">
+            <column name="product1_quantity" precision="22" scale="0" />
+        </property>
+        <property name="product2Quantity" type="java.lang.Double">
+            <column name="product2_quantity" precision="22" scale="0" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="quantity" type="java.lang.Double">
+            <column name="quantity" precision="22" scale="0" />
+        </property>
+        <property name="averagePrice" type="java.lang.Double">
+            <column name="average_price" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

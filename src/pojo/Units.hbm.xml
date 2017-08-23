@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Units" table="units" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="unitName" type="string">
+            <column name="unit_name" length="100" />
+        </property>
+        <set name="deliveryItemLogs" table="delivery_item_log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="units_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.DeliveryItemLog" />
+        </set>
+        <set name="products" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="units_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Product" />
+        </set>
+    </class>
+</hibernate-mapping>

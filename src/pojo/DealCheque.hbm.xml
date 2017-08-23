@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.DealCheque" table="deal_cheque" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="bankDeals" class="pojo.BankDeals" fetch="select">
+            <column name="bank_deals" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cheques" class="pojo.Cheques" fetch="select">
+            <column name="cheques" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

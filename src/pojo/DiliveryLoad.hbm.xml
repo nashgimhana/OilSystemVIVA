@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:22:54 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.DiliveryLoad" table="dilivery_load" catalog="oildb" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="delivery" class="pojo.Delivery" fetch="select">
+            <column name="delivery_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="pojo.Product" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
+        <property name="loadqty" type="java.lang.Double">
+            <column name="loadqty" precision="22" scale="0" />
+        </property>
+        <property name="crntPrice" type="java.lang.Double">
+            <column name="crnt_price" precision="22" scale="0" />
+        </property>
+        <property name="returnqty" type="java.lang.Double">
+            <column name="returnqty" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

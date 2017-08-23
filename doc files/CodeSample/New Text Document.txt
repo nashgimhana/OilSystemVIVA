@@ -1,0 +1,27 @@
+public SuggestComboBoxModel autoCompleateRouteName(SuggestComboBox comboBox, JFrame frame) {
+        SuggestComboBoxModel boxModel = new SuggestComboBoxModel();
+        boxModel.removeAllElements();
+        try {
+            pst = conn.prepareStatement("SELECT root_name FROM tbl_root");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                boxModel.addElement(rs.getString("root_name"));
+            }
+        } catch (Exception e) {
+            WebOptionPane.showMessageDialog(frame, e, "Error", WebOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                WebOptionPane.showMessageDialog(frame, e, "Error", WebOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return boxModel;
+    }
+
+
+
+public void acCompanyName(SuggestComboBox cmbCompanyName, JFrame frame) {
+        cmbCompanyName.setModel(getData.autoCompleateCompanyName(frame));
+    }
