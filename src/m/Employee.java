@@ -452,7 +452,7 @@ public class Employee {
         } finally {
             ses.close();
         }
-        hilightRow(tbl_ap);
+        //hilightRow(tbl_ap);
     }
 
 //    public void hilightRow(JTable tbl_ap) {
