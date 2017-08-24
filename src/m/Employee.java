@@ -71,8 +71,6 @@ public class Employee {
         return null;
     }
 
-   
-
     public pojo.Employee getByFnameandMname(String fname, String mname) {
         Session ses = sessionFactory.openSession();
         pojo.Employee idd = null;
@@ -454,8 +452,15 @@ public class Employee {
         } finally {
             ses.close();
         }
-
+        hilightRow(tbl_ap);
     }
+
+//    public void hilightRow(JTable tbl_ap) {
+//        new Date();
+//        int rc = tbl_ap.getRowCount();
+//        System.out.println(rc);
+//
+//    }
 
     public void deleteEmploy(JLabel lbl_empid) {
         if (lbl_empid.getText() != "00") {
