@@ -56,6 +56,19 @@ public class BankDeals {
             session.close();
         }
     }
+    
+    public List<pojo.BankDeals> getByBank(pojo.Bank bank) {
+        session = conn.NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            List<pojo.BankDeals> list = session.createCriteria(pojo.BankDeals.class).add(Restrictions.eq("bank", bank)).list();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
 
     public List<pojo.BankDeals> getByDateRange(Date from, Date to) {
         session = conn.NewHibernateUtil.getSessionFactory().openSession();

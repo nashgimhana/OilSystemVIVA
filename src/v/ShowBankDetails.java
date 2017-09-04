@@ -8,6 +8,7 @@ package v;
 import java.awt.Color;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
+import pojo.Bank;
 
 /**
  *
@@ -21,20 +22,15 @@ public class ShowBankDetails extends javax.swing.JDialog {
     private ShowBankDetails(Frame parent) {
         super(parent);
         initComponents();
+        this.addComponentListener(c.ShowBankDetailsListner.getInstance());
     }
     public static ShowBankDetails ShowBankDetails;
     public static ShowBankDetails getInstance(){
         if(ShowBankDetails==null)ShowBankDetails=new ShowBankDetails(v.Home.getInstance());
         return ShowBankDetails;
     }
-    public String bankName;
-    public void loadDetails(){
-        if(!bankName.isEmpty()){
-            
-        }else{
-            JOptionPane.showMessageDialog(this, "Not Found Bank Name");
-        }
-    }
+    public String bankName="";
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +43,8 @@ public class ShowBankDetails extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lbl_amount = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_bank_details = new javax.swing.JTable();
@@ -62,13 +60,27 @@ public class ShowBankDetails extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Bank Name");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Amount :");
+
+        lbl_amount.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_amount.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_amount.setText("Rs.00");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 141, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -76,7 +88,11 @@ public class ShowBankDetails extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_amount, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(jLabel2))
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -135,6 +151,8 @@ public class ShowBankDetails extends javax.swing.JDialog {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
+        getAccessibleContext().setAccessibleName("showbankdetails");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -176,10 +194,12 @@ public class ShowBankDetails extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbl_bank_details;
+    public javax.swing.JLabel lbl_amount;
+    public javax.swing.JTable tbl_bank_details;
     // End of variables declaration//GEN-END:variables
 }

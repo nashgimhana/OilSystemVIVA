@@ -106,6 +106,18 @@ public class Cheques {
             session.close();
         }
     }
+    public List<pojo.Cheques> getByBankDeal(pojo.BankDeals BankDeals) {
+        session = conn.NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            List<pojo.Cheques> list = session.createCriteria(pojo.Cheques.class).createAlias("dealCheques", "dc").add(Restrictions.eq("dc.bankDeals", BankDeals)).list();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
     public List<pojo.Cheques> getByDateRange(Date from,Date to) {
         session = conn.NewHibernateUtil.getSessionFactory().openSession();
         try {

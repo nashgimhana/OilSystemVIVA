@@ -39,6 +39,7 @@ import pojo.DealCategory;
 import pojo.DealType;
 import pojo.MoneyBook;
 import v.Cash_Check_Book;
+import v.ShowBankDetails;
 
 /**
  *
@@ -620,7 +621,10 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                     } else if (e.getSource() == this.Cash_Check_Book.tbl_bank_current_status) {
                         int selectedBank = this.Cash_Check_Book.tbl_bank_current_status.getSelectedRow();
                         if(selectedBank>-1){
-                            
+                            String bankName = this.Cash_Check_Book.tbl_bank_current_status.getValueAt(selectedBank, 1).toString();
+                            ShowBankDetails ShowBankDetails = v.ShowBankDetails.getInstance();
+                            ShowBankDetails.bankName=bankName;
+                            ShowBankDetails.setVisible(true);
                         }
                     }else {
                         JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please Select a Cheque", "Warning", JOptionPane.WARNING_MESSAGE);
