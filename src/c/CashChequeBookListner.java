@@ -617,7 +617,12 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                             }else
                                 loadPendingCheques(this.Cash_Check_Book.tbl_cheque);
                         }
-                    } else {
+                    } else if (e.getSource() == this.Cash_Check_Book.tbl_bank_current_status) {
+                        int selectedBank = this.Cash_Check_Book.tbl_bank_current_status.getSelectedRow();
+                        if(selectedBank>-1){
+                            
+                        }
+                    }else {
                         JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please Select a Cheque", "Warning", JOptionPane.WARNING_MESSAGE);
                     }
                 } else {
@@ -699,7 +704,7 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
             } // summory tab
             else if (e.getSource() == this.Cash_Check_Book.tab_summory) {
                 this.tbl = this.Cash_Check_Book.tbl_summory;
-                loadBalanceSheet(this.Cash_Check_Book.tbl_balance_sheet);
+                //loadBalanceSheet(this.Cash_Check_Book.tbl_balance_sheet);
                 loadCashSummory();
                 loadSummoryOfLast7();
                 loadSupplierSummory();
@@ -1371,57 +1376,57 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
         lbl.setText("Rs. " + new m.AssetStatus().getById(1).getAmount() + "");
     }
 
-    private void loadBalanceSheet(JTable tbl) {
-        DefaultTableModel dtm = (DefaultTableModel) tbl.getModel();
-        tbl.setRowHeight(20);
-        tbl.setShowVerticalLines(false);
-        tbl.setGridColor(c.View.getInstance().colorTheme);
-        dtm.setRowCount(0);
-        dtm.setColumnCount(0);
-        dtm.addColumn("");
-        dtm.addColumn("");
-        dtm.addColumn("");
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
-        tbl.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
-        tbl.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
-
-        double cashTotal = 0;
-        cashTotal = new m.AssetStatus().getById(1).getAmount();
-        Vector rowCash = new Vector();
-        rowCash.add("Cash");
-        rowCash.add("");
-        rowCash.add(m.ValueValidation.getInstance().toDeciaml(cashTotal, 2));
-        dtm.addRow(rowCash);
-
-        double bankTotal = 0;
-        List<Bank> listBank = new m.Bank().getAll();
-        if (listBank != null && !listBank.isEmpty()) {
-            for (int i = 0; i < listBank.size(); i++) {
-                pojo.Bank bank = listBank.get(i);
-                Vector rowBank = new Vector();
-                if (i == 0) {
-                    rowBank.add("Banks " + bank.getBank());
-                } else {
-                    rowBank.add("          " + bank.getBank());
-                }
-                rowBank.add(m.ValueValidation.getInstance().toDeciaml(bank.getAmount(), 2));
-                rowBank.add("");
-                bankTotal += bank.getAmount();
-                dtm.addRow(rowBank);
-            }
-            Vector rowBankTotal = new Vector();
-            rowBankTotal.add("Banks Total");
-            rowBankTotal.add("");
-            rowBankTotal.add(m.ValueValidation.getInstance().toDeciaml(bankTotal, 2));
-            dtm.addRow(rowBankTotal);
-        }
-        Vector rowTotal = new Vector();
-        rowTotal.add("Money Status");
-        rowTotal.add("");
-        rowTotal.add(m.ValueValidation.getInstance().toDeciaml(bankTotal + cashTotal, 2));
-        dtm.addRow(rowTotal);
-    }
+//    private void loadBalanceSheet(JTable tbl) {
+//        DefaultTableModel dtm = (DefaultTableModel) tbl.getModel();
+//        tbl.setRowHeight(20);
+//        tbl.setShowVerticalLines(false);
+//        tbl.setGridColor(c.View.getInstance().colorTheme);
+//        dtm.setRowCount(0);
+//        dtm.setColumnCount(0);
+//        dtm.addColumn("");
+//        dtm.addColumn("");
+//        dtm.addColumn("");
+//        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+//        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+//        tbl.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+//        tbl.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+//
+//        double cashTotal = 0;
+//        cashTotal = new m.AssetStatus().getById(1).getAmount();
+//        Vector rowCash = new Vector();
+//        rowCash.add("Cash");
+//        rowCash.add("");
+//        rowCash.add(m.ValueValidation.getInstance().toDeciaml(cashTotal, 2));
+//        dtm.addRow(rowCash);
+//
+//        double bankTotal = 0;
+//        List<Bank> listBank = new m.Bank().getAll();
+//        if (listBank != null && !listBank.isEmpty()) {
+//            for (int i = 0; i < listBank.size(); i++) {
+//                pojo.Bank bank = listBank.get(i);
+//                Vector rowBank = new Vector();
+//                if (i == 0) {
+//                    rowBank.add("Banks " + bank.getBank());
+//                } else {
+//                    rowBank.add("          " + bank.getBank());
+//                }
+//                rowBank.add(m.ValueValidation.getInstance().toDeciaml(bank.getAmount(), 2));
+//                rowBank.add("");
+//                bankTotal += bank.getAmount();
+//                dtm.addRow(rowBank);
+//            }
+//            Vector rowBankTotal = new Vector();
+//            rowBankTotal.add("Banks Total");
+//            rowBankTotal.add("");
+//            rowBankTotal.add(m.ValueValidation.getInstance().toDeciaml(bankTotal, 2));
+//            dtm.addRow(rowBankTotal);
+//        }
+//        Vector rowTotal = new Vector();
+//        rowTotal.add("Money Status");
+//        rowTotal.add("");
+//        rowTotal.add(m.ValueValidation.getInstance().toDeciaml(bankTotal + cashTotal, 2));
+//        dtm.addRow(rowTotal);
+//    }
 
     private String addBank(String name, double amount) {
         if (!name.isEmpty()) {

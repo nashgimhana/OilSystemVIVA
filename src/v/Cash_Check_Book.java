@@ -48,9 +48,6 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         jScrollPane8 = new javax.swing.JScrollPane();
         tbl_summory = new javax.swing.JTable();
         jPanel38 = new javax.swing.JPanel();
-        jPanel42 = new javax.swing.JPanel();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        tbl_balance_sheet = new javax.swing.JTable();
         jPanel43 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         lbl_cash_current_status = new javax.swing.JLabel();
@@ -272,43 +269,6 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         java.awt.FlowLayout flowLayout2 = new java.awt.FlowLayout(java.awt.FlowLayout.LEADING);
         flowLayout2.setAlignOnBaseline(true);
         jPanel38.setLayout(flowLayout2);
-
-        jPanel42.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Balance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        jPanel42.setPreferredSize(new java.awt.Dimension(350, 250));
-
-        jScrollPane14.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane14.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane14.getViewport().setBorder(null);
-        jScrollPane14.getViewport().setBackground(Color.WHITE);
-
-        tbl_balance_sheet.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tbl_balance_sheet.setTableHeader(null);
-        tbl_balance_sheet.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbl_balance_sheet.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane14.setViewportView(tbl_balance_sheet);
-
-        javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
-        jPanel42.setLayout(jPanel42Layout);
-        jPanel42Layout.setHorizontalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-        );
-        jPanel42Layout.setVerticalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel42Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
-        );
-
-        jPanel38.add(jPanel42);
 
         jPanel43.setBackground(new java.awt.Color(255, 255, 255));
         jPanel43.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, new java.awt.Color(51, 51, 51)), "Cash", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(51, 51, 51))); // NOI18N
@@ -1910,7 +1870,6 @@ public class Cash_Check_Book extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
     private javax.swing.JPanel jPanel45;
@@ -1924,7 +1883,6 @@ public class Cash_Check_Book extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1968,7 +1926,6 @@ public class Cash_Check_Book extends javax.swing.JPanel {
     public javax.swing.JScrollPane tab_setup;
     public javax.swing.JScrollPane tab_summory;
     public javax.swing.JScrollPane tab_transfer;
-    public javax.swing.JTable tbl_balance_sheet;
     public javax.swing.JTable tbl_bank_current_status;
     public javax.swing.JTable tbl_cash;
     public javax.swing.JTable tbl_cash_last_status;
