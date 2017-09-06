@@ -34,6 +34,7 @@ import m.Customer;
 import m.RouteReg;
 import m.Supplier;
 import pojo.Bank;
+import pojo.BankDeals;
 import pojo.Cheques;
 import pojo.DealCategory;
 import pojo.DealType;
@@ -243,20 +244,20 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                     }
                 } // Search cash deals by date range
                 else if (e.getSource() == this.Cash_Check_Book.btn_cash_search_range) {
-                    this.searchDateFrom = this.Cash_Check_Book.jdc_cash_from.getDate();
-                    this.searchDateTo = this.Cash_Check_Book.jdc_cash_to.getDate();
+                    Date dateFrom = this.Cash_Check_Book.jdc_cash_from.getDate();
+                    Date dateTo = this.Cash_Check_Book.jdc_cash_to.getDate();
                     boolean cashincome = this.Cash_Check_Book.jcb_income_cash.isSelected();
                     boolean cashexpend = this.Cash_Check_Book.jcb_expend_cash.isSelected();
                     this.msg = this.Cash_Check_Book.lbl_message_cash;
                     this.tbl = this.Cash_Check_Book.tbl_cash;
-                    if (this.searchDateFrom != null) {
-                        if (this.searchDateTo != null) {
+                    if (dateFrom != null) {
+                        if (dateTo != null) {
                             if (cashincome && cashexpend) {
-                                loadCashDealsByDateRange(this.searchDateFrom, this.searchDateTo);
+                                loadCashDealsByDateRange(dateFrom, dateTo);
                             } else if (cashincome) {
-                                loadCashIncomeByDateRange(this.searchDateFrom, this.searchDateTo);
+                                loadCashIncomeByDateRange(dateFrom, dateTo);
                             } else if (cashexpend) {
-                                loadCashExpendByDateRange(this.searchDateFrom, this.searchDateTo);
+                                loadCashExpendByDateRange(dateFrom, dateTo);
                             }
                         } else {
                             JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please Enter Date", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -387,11 +388,20 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                 else if (e.getSource() == this.Cash_Check_Book.btn_add_bank) {
                     try {
                         String name = this.Cash_Check_Book.txt_bank.getText();
-                        double amount = Double.parseDouble(this.Cash_Check_Book.txt_bank_amount.getText());
+                        String amo = this.Cash_Check_Book.txt_bank_amount.getText();
+                        if(!name.equalsIgnoreCase("")){
+                        if(!amo.equalsIgnoreCase("")){
+                        double amount = Double.parseDouble(amo);
                         String addBank = addBank(name, amount);
                         if (addBank.equalsIgnoreCase("done")) {
                             loadBankToTable(this.Cash_Check_Book.tbl_setup_bank_list);
                             clearSetup();
+                        }
+                        }else{
+                            JOptionPane.showMessageDialog(this.Cash_Check_Book, "Enter Bank Amount", "Warning", JOptionPane.WARNING_MESSAGE);
+                        }
+                        }else{
+                            JOptionPane.showMessageDialog(this.Cash_Check_Book, "Enter Bank Name", "Warning", JOptionPane.WARNING_MESSAGE);
                         }
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(this.Cash_Check_Book, "Enter valide number", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -457,13 +467,12 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                                             String save = new m.MoneyBook().save(moneyBook);
                                             if (save.equalsIgnoreCase("done")) {
                                                 c.AssetControl.getInstance().updateCashAsset(amount, '-');
-                                                MoneyBook moneyBook2 = new pojo.MoneyBook();
-                                                moneyBook2.setDate(date);
-                                                moneyBook2.setAmount(amount);
-                                                moneyBook2.setDscription("Transfered from cash");
-                                                moneyBook2.setDealCategory(new m.DealCategory().getBy(1));
-                                                moneyBook2.setDealType(new m.DealType().getBy(27));
-                                                String save2 = new m.MoneyBook().save(moneyBook2);
+                                                BankDeals bankDeals = new pojo.BankDeals();
+                                                bankDeals.setDate(date);
+                                                bankDeals.setAmount(amount);
+                                                bankDeals.setDescription("Transfered from cash");
+                                                bankDeals.setBank(Bank);
+                                                String save2 = new m.BankDeals().save(bankDeals);
                                                 if (save2.equalsIgnoreCase("done")) {
                                                     String updateBankAsset = c.AssetControl.getInstance().updateBankAsset(bank, amount, '+');
                                                     if (updateBankAsset.equalsIgnoreCase("done")) {
@@ -571,63 +580,83 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                     this.Cash_Check_Book.txt_bank_amount.setText(this.Cash_Check_Book.tbl_setup_bank_list.getValueAt(this.Cash_Check_Book.tbl_setup_bank_list.getSelectedRow(), 1).toString());
                 } // proceed cheque
                 else if (e.getSource() == this.Cash_Check_Book.btn_proceed) {
-                    int selectedRow = this.Cash_Check_Book.tbl_cheque.getSelectedRow();
-                    System.out.println(selectedRow);
-                    if (selectedRow > -1) {
-                        String chequeNo = (String) this.Cash_Check_Book.tbl_cheque.getValueAt(selectedRow, 1);
-                        Cheques cheque = new m.Cheques().getByChequeNumber(chequeNo);
-                        if (cheque != null) {
-                            String[] split = cheque.getDiscription().split("/");
-                            Bank Bank = new m.Bank().getBy(this.Cash_Check_Book.cmb_chequebook_bank.getSelectedItem().toString());
-                            if (Bank != null) {
-                                int val = 0;
-                                if (split[0].equalsIgnoreCase("routereg")) {
-                                    val =new c.RouteDebitMoneyBook().routeCheckProceed(Integer.parseInt(split[1]), chequeNo, cheque.getChequeAmount(), Bank.getId());
-                                } else if (split[0].equalsIgnoreCase("supplier")) {
-                                    val =new c.grncashcontroller().supliercheckproceed(Integer.parseInt(split[1]), chequeNo, cheque.getChequeAmount(), Bank.getId());
-                                } else if (split[0].equalsIgnoreCase("cash")) {
-                                    val =c.CashChequeBookListner.getInstance().proceedCheque(chequeNo, Bank.getId());
-                                } else if (split[0].equalsIgnoreCase("customer")) {
-                                    val =new c.invpayment().customercheckproceed(Integer.parseInt(split[1]), chequeNo, cheque.getChequeAmount(), Bank.getId());
-                                }
-                                if (val == 1) {
-                                    JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Success", "Message", JOptionPane.INFORMATION_MESSAGE);
-                                    if(this.Cash_Check_Book.tbl_cheque.getRowCount()==1){
-                                        ((DefaultTableModel)this.Cash_Check_Book.tbl_cheque.getModel()).setRowCount(0);
-                                    }else
-                                        loadPendingCheques(this.Cash_Check_Book.tbl_cheque);
+                    if (this.Cash_Check_Book.tbl_cheque_recive.getSelectedRow() > 0 || this.Cash_Check_Book.tbl_cheque_pay.getSelectedRow() > 0) {
+                        int selectedRow = -1;
+                        if (this.Cash_Check_Book.tbl_cheque_recive.getSelectedRow() > 0) {
+                            selectedRow = this.Cash_Check_Book.tbl_cheque_recive.getSelectedRow();
+                        } else if (this.Cash_Check_Book.tbl_cheque_pay.getSelectedRow() > 0) {
+                            selectedRow = this.Cash_Check_Book.tbl_cheque_pay.getSelectedRow();
+                        }
+
+                        if (selectedRow > -1) {
+                            String chequeNo = (String) this.Cash_Check_Book.tbl_cheque_recive.getValueAt(selectedRow, 1);
+                            Cheques cheque = new m.Cheques().getByChequeNumber(chequeNo);
+                            if (cheque != null) {
+                                String[] split = cheque.getDiscription().split("/");
+                                Bank Bank = new m.Bank().getBy(this.Cash_Check_Book.cmb_chequebook_bank.getSelectedItem().toString());
+                                if (Bank != null) {
+                                    int val = 0;
+                                    if (split[0].equalsIgnoreCase("routereg")) {
+                                        val = new c.RouteDebitMoneyBook().routeCheckProceed(Integer.parseInt(split[1]), chequeNo, cheque.getChequeAmount(), Bank.getId());
+                                    } else if (split[0].equalsIgnoreCase("supplier")) {
+                                        val = new c.grncashcontroller().supliercheckproceed(Integer.parseInt(split[1]), chequeNo, cheque.getChequeAmount(), Bank.getId());
+                                    } else if (split[0].equalsIgnoreCase("cash")) {
+                                        val = c.CashChequeBookListner.getInstance().proceedCheque(chequeNo, Bank.getId());
+                                    } else if (split[0].equalsIgnoreCase("customer")) {
+                                        val = new c.invpayment().customercheckproceed(Integer.parseInt(split[1]), chequeNo, cheque.getChequeAmount(), Bank.getId());
+                                    }
+                                    if (val == 1) {
+                                        JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Success", "Message", JOptionPane.INFORMATION_MESSAGE);
+                                        if (this.Cash_Check_Book.tbl_cheque_recive.getRowCount() == 1) {
+                                            ((DefaultTableModel) this.Cash_Check_Book.tbl_cheque_recive.getModel()).setRowCount(0);
+                                        } else {
+                                            loadPendingCheques();
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Fail", "Warning", JOptionPane.WARNING_MESSAGE);
+                                    }
                                 } else {
-                                    JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Fail", "Warning", JOptionPane.WARNING_MESSAGE);
+                                    JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please select bank", "Warning", JOptionPane.WARNING_MESSAGE);
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please select bank", "Warning", JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Not Found Cheque", "Warning", JOptionPane.WARNING_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Not Found Cheque", "Warning", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please Select a Cheque.", "Warning", JOptionPane.WARNING_MESSAGE);
                         }
                     } else {
                         JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please Select a Cheque", "Warning", JOptionPane.WARNING_MESSAGE);
                     }
                 } else if (e.getSource() == this.Cash_Check_Book.btn_returncheque) {
-                    int selectedRow = this.Cash_Check_Book.tbl_cheque.getSelectedRow();
-                    if (selectedRow > -1) {
-                        String chequeNumber = (String) this.Cash_Check_Book.tbl_cheque.getValueAt(selectedRow, 1);
-                        if (this.returnCheque(chequeNumber).equalsIgnoreCase("done")) {
-                            if(this.Cash_Check_Book.tbl_cheque.getRowCount()==1){
-                               ((DefaultTableModel)this.Cash_Check_Book.tbl_cheque.getModel()).setRowCount(0);
-                            }else
-                                loadPendingCheques(this.Cash_Check_Book.tbl_cheque);
+                    if (this.Cash_Check_Book.tbl_cheque_recive.getSelectedRow() > 0 || this.Cash_Check_Book.tbl_cheque_pay.getSelectedRow() > 0) {
+                        int selectedRow = -1;
+                        if (this.Cash_Check_Book.tbl_cheque_recive.getSelectedRow() > 0) {
+                            selectedRow = this.Cash_Check_Book.tbl_cheque_recive.getSelectedRow();
+                        } else if (this.Cash_Check_Book.tbl_cheque_pay.getSelectedRow() > 0) {
+                            selectedRow = this.Cash_Check_Book.tbl_cheque_pay.getSelectedRow();
                         }
-                    } else if (e.getSource() == this.Cash_Check_Book.tbl_bank_current_status) {
-                        int selectedBank = this.Cash_Check_Book.tbl_bank_current_status.getSelectedRow();
-                        if(selectedBank>-1){
-                            String bankName = this.Cash_Check_Book.tbl_bank_current_status.getValueAt(selectedBank, 1).toString();
-                            ShowBankDetails ShowBankDetails = v.ShowBankDetails.getInstance();
-                            ShowBankDetails.bankName=bankName;
-                            ShowBankDetails.setVisible(true);
+                        if (selectedRow > -1) {
+                            String chequeNumber = (String) this.Cash_Check_Book.tbl_cheque_recive.getValueAt(selectedRow, 1);
+                            if (this.returnCheque(chequeNumber).equalsIgnoreCase("done")) {
+                                if (this.Cash_Check_Book.tbl_cheque_recive.getRowCount() == 1) {
+                                    ((DefaultTableModel) this.Cash_Check_Book.tbl_cheque_recive.getModel()).setRowCount(0);
+                                } else {
+                                    loadPendingCheques();
+                                }
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please Select a Cheque.", "Warning", JOptionPane.WARNING_MESSAGE);
                         }
-                    }else {
-                        JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please Select a Cheque", "Warning", JOptionPane.WARNING_MESSAGE);
+                    }else{
+                            JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please Select a Cheque", "Warning", JOptionPane.WARNING_MESSAGE);
+                        }
+                } else if (e.getSource() == this.Cash_Check_Book.tbl_bank_current_status) {
+                    int selectedBank = this.Cash_Check_Book.tbl_bank_current_status.getSelectedRow();
+                    if (selectedBank > -1) {
+                        String bankName = this.Cash_Check_Book.tbl_bank_current_status.getValueAt(selectedBank, 0).toString();
+                        ShowBankDetails ShowBankDetails = v.ShowBankDetails.getInstance();
+                        ShowBankDetails.bankName = bankName;
+                        ShowBankDetails.setVisible(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Somethin went wrong. Try again.", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -686,7 +715,7 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                 loadCashBookWithInMonth();
             } // cheque tab
             else if (e.getSource() == this.Cash_Check_Book.tab_cheque) {
-                loadPendingCheques(this.Cash_Check_Book.tbl_cheque);
+                loadPendingCheques();
                 loadBankToCombo(this.Cash_Check_Book.cmb_chequebook_bank);
             } // setup tab
             else if (e.getSource() == this.Cash_Check_Book.tab_setup) {
@@ -746,6 +775,10 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
             this.Cash_Check_Book.jdc_cash_to.setDate(null);
         } else if (e.getSource() == this.Cash_Check_Book.jdc_cash_from || e.getSource() == this.Cash_Check_Book.jdc_cash_to) {
             this.Cash_Check_Book.jdc_cash_date.setDate(null);
+        } else if (e.getSource() == this.Cash_Check_Book.tbl_cheque_recive) {
+            this.Cash_Check_Book.tbl_cheque_pay.clearSelection();
+        } else if (e.getSource() == this.Cash_Check_Book.tbl_cheque_pay) {
+            this.Cash_Check_Book.tbl_cheque_recive.clearSelection();
         }
     }
 
@@ -860,15 +893,20 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
         }
     }
 
-    private void loadPendingCheques(JTable tbl) {
+    private void loadPendingCheques() {
         try {
             List<Cheques> list_pendingCheques = new m.Cheques().getByStatus(0);
             if (list_pendingCheques != null && !list_pendingCheques.isEmpty()) {
-                DefaultTableModel dtm = (DefaultTableModel) tbl.getModel();
-                tbl.setRowHeight(22);
-                tbl.setShowVerticalLines(false);
-                tbl.setGridColor(c.View.getInstance().colorTheme);
-                dtm.setRowCount(0);
+                DefaultTableModel dtmr = (DefaultTableModel) this.Cash_Check_Book.tbl_cheque_recive.getModel();
+                DefaultTableModel dtmp = (DefaultTableModel) this.Cash_Check_Book.tbl_cheque_pay.getModel();
+                this.Cash_Check_Book.tbl_cheque_recive.setRowHeight(22);
+                this.Cash_Check_Book.tbl_cheque_recive.setShowVerticalLines(false);
+                this.Cash_Check_Book.tbl_cheque_recive.setGridColor(c.View.getInstance().colorTheme);
+                this.Cash_Check_Book.tbl_cheque_pay.setRowHeight(22);
+                this.Cash_Check_Book.tbl_cheque_pay.setShowVerticalLines(false);
+                this.Cash_Check_Book.tbl_cheque_pay.setGridColor(c.View.getInstance().colorTheme);
+                dtmr.setRowCount(0);
+                dtmp.setRowCount(0);
                 m.Bank bank = new m.Bank();
                 m.DealType dealType = new m.DealType();
                 DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
@@ -891,52 +929,16 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                     } else {
                         v.add("Not Dated");
                     }
-                    dtm.addRow(v);
+                    if (Cheques.getType().equals("-")) {
+                        dtmp.addRow(v);
+                    } else if (Cheques.getType().equals("+")) {
+                        dtmr.addRow(v);
+                    }
                 }
-                colorizeTable(tbl);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void colorizeTable(JTable tbl) {
-        Color gl = new Color(102, 255, 153);
-        Color gd = new Color(0, 204, 68);
-        Color rl = new Color(255, 102, 102);
-        Color ol = new Color(255, 163, 102);
-        Color od = new Color(255, 117, 26);
-        tbl.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component Component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                Component.setForeground(Color.WHITE);
-                Component.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
-                Date today = new Date();
-                Date chequeDate = (Date) table.getValueAt(row, 5);
-                if (((String) table.getValueAt(row, 0)).equalsIgnoreCase("+")) {
-                    if (chequeDate.getTime() > today.getTime() && chequeDate.getTime() <= (today.getTime() + (1000 * 60 * 60 * 24 * 3))) {
-                        Component.setBackground(gd);
-                    } else if (chequeDate.getTime() < today.getTime()) {
-                        Component.setBackground(rl);
-                    } else {
-                        Component.setBackground(gl);
-                    }
-                } else if (((String) table.getValueAt(row, 0)).equalsIgnoreCase("-")) {
-                    if (chequeDate.getTime() > today.getTime() && chequeDate.getTime() <= (today.getTime() + (1000 * 60 * 60 * 24 * 3))) {
-                        Component.setBackground(od);
-                    } else if (chequeDate.getTime() < today.getTime()) {
-                        Component.setBackground(rl);
-                    } else {
-                        Component.setBackground(ol);
-                    }
-                } else {
-                    Component.setBackground(Color.black);
-                }
-                table.setSelectionForeground(Color.blue);
-                return Component;
-            }
-        });
     }
 
     private String returnCheque(String chequeNo) {
@@ -1377,7 +1379,7 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
     }
 
     private void loadAssetCash(JLabel lbl) {
-        lbl.setText("Rs. " + new m.AssetStatus().getById(1).getAmount() + "");
+        lbl.setText("Rs. " + m.ValueValidation.getInstance().toDeciaml(new m.AssetStatus().getById(1).getAmount(), 2));
     }
 
 //    private void loadBalanceSheet(JTable tbl) {
@@ -1431,7 +1433,6 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
 //        rowTotal.add(m.ValueValidation.getInstance().toDeciaml(bankTotal + cashTotal, 2));
 //        dtm.addRow(rowTotal);
 //    }
-
     private String addBank(String name, double amount) {
         if (!name.isEmpty()) {
             m.Bank bank = new m.Bank();
@@ -1621,38 +1622,45 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                     JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Failed", "Warning", JOptionPane.WARNING_MESSAGE);
                     return "not";
                 }
-                }else{JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Deal Saving Failed","Warning",JOptionPane.WARNING_MESSAGE);return "not";}
+            } else {
+                JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Deal Saving Failed", "Warning", JOptionPane.WARNING_MESSAGE);
+                return "not";
+            }
         } catch (NumberFormatException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please check numbers again","Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please check numbers again", "Warning", JOptionPane.WARNING_MESSAGE);
             return "error";
         } catch (Exception ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Somethin went wrong. Try again.","Error",JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Somethin went wrong. Try again.", "Error", JOptionPane.ERROR);
             return "error";
         }
     }
-    public int proceedCheque(String chequeNumber,int bankId){
+
+    public int proceedCheque(String chequeNumber, int bankId) {
         try {
-                Cheques Cheques = new m.Cheques().getByChequeNumber(chequeNumber);
-                Cheques.setStatus(1);
-                String save = new m.Cheques().update(Cheques);
-                if(save.equalsIgnoreCase("done")){
-                    Bank bank = new m.Bank().getBy(bankId);
-                    if(Cheques.getType().equals("+")){
-                        bank.setAmount(bank.getAmount()+Cheques.getChequeAmount());
-                    }else if(Cheques.getType().equals("+")){
-                        bank.setAmount(bank.getAmount()-Cheques.getChequeAmount());
-                    }
-                    String updateBank = new m.Bank().updateBank(bank);
-                    if(updateBank.equalsIgnoreCase("done")){
-                    JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Successfully","Message",JOptionPane.INFORMATION_MESSAGE);
+            Cheques Cheques = new m.Cheques().getByChequeNumber(chequeNumber);
+            Cheques.setStatus(1);
+            String save = new m.Cheques().update(Cheques);
+            if (save.equalsIgnoreCase("done")) {
+                Bank bank = new m.Bank().getBy(bankId);
+                if (Cheques.getType().equals("+")) {
+                    bank.setAmount(bank.getAmount() + Cheques.getChequeAmount());
+                } else if (Cheques.getType().equals("+")) {
+                    bank.setAmount(bank.getAmount() - Cheques.getChequeAmount());
+                }
+                String updateBank = new m.Bank().updateBank(bank);
+                if (updateBank.equalsIgnoreCase("done")) {
+                    JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Successfully", "Message", JOptionPane.INFORMATION_MESSAGE);
                     return 1;
-                    }else{
-                    JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Failed","Warning",JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Cheque Proceed Failed", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return 0;
+                }
+            } else {
+                JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Deal Saving Failed", "Warning", JOptionPane.WARNING_MESSAGE);
                 return 0;
             }
-                }else{JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Deal Saving Failed","Warning",JOptionPane.WARNING_MESSAGE);return 0;}
         } catch (NumberFormatException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Please check numbers again", "Warning", JOptionPane.WARNING_MESSAGE);

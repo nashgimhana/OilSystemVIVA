@@ -56,7 +56,20 @@ public class BankDeals {
             session.close();
         }
     }
-    
+
+    public List<pojo.BankDeals> getByBankAndDate(pojo.Bank bank, Date date) {
+        session = conn.NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            List<pojo.BankDeals> list = session.createCriteria(pojo.BankDeals.class).add(Restrictions.eq("bank", bank)).add(Restrictions.eq("date", date)).list();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
     public List<pojo.BankDeals> getByBank(pojo.Bank bank) {
         session = conn.NewHibernateUtil.getSessionFactory().openSession();
         try {
@@ -70,10 +83,10 @@ public class BankDeals {
         }
     }
 
-    public List<pojo.BankDeals> getByDateRange(Date from, Date to) {
+    public List<pojo.BankDeals> getByDateRange(pojo.Bank bank, Date from, Date to) {
         session = conn.NewHibernateUtil.getSessionFactory().openSession();
         try {
-            List<pojo.BankDeals> list = session.createCriteria(pojo.BankDeals.class).add(Restrictions.between("date", from, to)).list();
+            List<pojo.BankDeals> list = session.createCriteria(pojo.BankDeals.class).add(Restrictions.eq("bank", bank)).add(Restrictions.between("date", from, to)).list();
             return list;
         } catch (Exception e) {
             e.printStackTrace();

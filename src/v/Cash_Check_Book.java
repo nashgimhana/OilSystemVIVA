@@ -5,6 +5,7 @@
  */
 package v;
 
+import c.TblRenderCheque;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -97,7 +98,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         btn_proceed = new javax.swing.JButton();
         btn_returncheque = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
-        tbl_cheque = new javax.swing.JTable();
+        tbl_cheque_recive = new javax.swing.JTable();
         jPanel24 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -109,6 +110,8 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         jLabel36 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tbl_cheque_pay = new javax.swing.JTable();
         tab_deallog = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         tab_cashdeal = new javax.swing.JScrollPane();
@@ -359,6 +362,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         tbl_bank_current_status.setShowVerticalLines(false);
         tbl_bank_current_status.setTableHeader(null);
         tbl_bank_current_status.setRowHeight(20);
+        tbl_bank_current_status.addMouseListener(c.CashChequeBookListner.getInstance());
         jScrollPane11.setViewportView(tbl_bank_current_status);
 
         javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
@@ -839,9 +843,9 @@ public class Cash_Check_Book extends javax.swing.JPanel {
 
         jScrollPane10.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        tbl_cheque.setRowHeight(25);
-        tbl_cheque.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbl_cheque.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_cheque_recive.setRowHeight(25);
+        tbl_cheque_recive.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tbl_cheque_recive.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -857,20 +861,22 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tbl_cheque.getTableHeader().setOpaque(false);
-        tbl_cheque.setShowVerticalLines(false);
-        tbl_cheque.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,13));
-        tbl_cheque.getTableHeader().setFont(new Font(Font.SERIF, Font.BOLD, 14));
-        tbl_cheque.getTableHeader().setBackground(c.View.getInstance().tableHeaderColor);
+        tbl_cheque_recive.getTableHeader().setOpaque(false);
+        tbl_cheque_recive.setShowVerticalLines(false);
+        tbl_cheque_recive.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,13));
+        tbl_cheque_recive.getTableHeader().setFont(new Font(Font.SERIF, Font.BOLD, 14));
+        tbl_cheque_recive.getTableHeader().setBackground(c.View.getInstance().tableHeaderColor);
+        tbl_cheque_recive.setDefaultRenderer(Object.class, new TblRenderCheque());
+        tbl_cheque_recive.addFocusListener(c.CashChequeBookListner.getInstance());
         jScrollPane10.getViewport().setBackground(Color.WHITE);
         jScrollPane10.getViewport().setBorder(null);
-        jScrollPane10.setViewportView(tbl_cheque);
-        if (tbl_cheque.getColumnModel().getColumnCount() > 0) {
-            tbl_cheque.getColumnModel().getColumn(0).setPreferredWidth(8);
-            tbl_cheque.getColumnModel().getColumn(4).setPreferredWidth(150);
-            tbl_cheque.getColumnModel().getColumn(4).setMaxWidth(150);
-            tbl_cheque.getColumnModel().getColumn(5).setPreferredWidth(100);
-            tbl_cheque.getColumnModel().getColumn(5).setMaxWidth(100);
+        jScrollPane10.setViewportView(tbl_cheque_recive);
+        if (tbl_cheque_recive.getColumnModel().getColumnCount() > 0) {
+            tbl_cheque_recive.getColumnModel().getColumn(0).setPreferredWidth(8);
+            tbl_cheque_recive.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tbl_cheque_recive.getColumnModel().getColumn(4).setMaxWidth(150);
+            tbl_cheque_recive.getColumnModel().getColumn(5).setPreferredWidth(100);
+            tbl_cheque_recive.getColumnModel().getColumn(5).setMaxWidth(100);
         }
 
         jPanel24.setBackground(new java.awt.Color(255, 255, 255));
@@ -909,7 +915,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         jLabel34.setPreferredSize(new java.awt.Dimension(11, 14));
         jPanel24.add(jLabel34);
 
-        jLabel36.setText("Cheque Receive (Date Reached) ");
+        jLabel36.setText("Cheque pay (Date Reached) ");
         jPanel24.add(jLabel36);
 
         jLabel32.setBackground(new java.awt.Color(255, 102, 102));
@@ -921,6 +927,44 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         jLabel38.setText("Date Passed");
         jPanel24.add(jLabel38);
 
+        jScrollPane13.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        tbl_cheque_pay.setRowHeight(25);
+        tbl_cheque_pay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tbl_cheque_pay.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Type", "Cheque No.", "Bank", "Description", "Amount ", "Cheque Date", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_cheque_pay.getTableHeader().setOpaque(false);
+        tbl_cheque_pay.setShowVerticalLines(false);
+        tbl_cheque_pay.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,13));
+        tbl_cheque_pay.getTableHeader().setFont(new Font(Font.SERIF, Font.BOLD, 14));
+        tbl_cheque_pay.getTableHeader().setBackground(c.View.getInstance().tableHeaderColor);
+        tbl_cheque_pay.setDefaultRenderer(Object.class, new TblRenderCheque());
+        tbl_cheque_pay.addFocusListener(c.CashChequeBookListner.getInstance());
+        jScrollPane10.getViewport().setBackground(Color.WHITE);
+        jScrollPane10.getViewport().setBorder(null);
+        jScrollPane13.setViewportView(tbl_cheque_pay);
+        if (tbl_cheque_pay.getColumnModel().getColumnCount() > 0) {
+            tbl_cheque_pay.getColumnModel().getColumn(0).setPreferredWidth(8);
+            tbl_cheque_pay.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tbl_cheque_pay.getColumnModel().getColumn(4).setMaxWidth(150);
+            tbl_cheque_pay.getColumnModel().getColumn(5).setPreferredWidth(100);
+            tbl_cheque_pay.getColumnModel().getColumn(5).setMaxWidth(100);
+        }
+
         javax.swing.GroupLayout pnl_chequeLayout = new javax.swing.GroupLayout(pnl_cheque);
         pnl_cheque.setLayout(pnl_chequeLayout);
         pnl_chequeLayout.setHorizontalGroup(
@@ -928,10 +972,11 @@ public class Cash_Check_Book extends javax.swing.JPanel {
             .addGroup(pnl_chequeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_chequeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane10)
                     .addGroup(pnl_chequeLayout.createSequentialGroup()
                         .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 139, Short.MAX_VALUE))
-                    .addComponent(jScrollPane10))
+                    .addComponent(jScrollPane13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -941,11 +986,13 @@ public class Cash_Check_Book extends javax.swing.JPanel {
             .addGroup(pnl_chequeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_chequeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_chequeLayout.createSequentialGroup()
                         .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
-                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -1680,14 +1727,16 @@ public class Cash_Check_Book extends javax.swing.JPanel {
             .addGroup(jPanel34Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
+                    .addGroup(jPanel34Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_capital_cash, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_add_cash_capital, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
-                        .addComponent(lbl_cash_capital, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addComponent(lbl_cash_capital, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel34Layout.setVerticalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1883,6 +1932,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1929,7 +1979,8 @@ public class Cash_Check_Book extends javax.swing.JPanel {
     public javax.swing.JTable tbl_bank_current_status;
     public javax.swing.JTable tbl_cash;
     public javax.swing.JTable tbl_cash_last_status;
-    public javax.swing.JTable tbl_cheque;
+    public javax.swing.JTable tbl_cheque_pay;
+    public javax.swing.JTable tbl_cheque_recive;
     public javax.swing.JTable tbl_customer_current_credit;
     public javax.swing.JTable tbl_route_current_credit;
     public javax.swing.JTable tbl_setup_bank_list;
