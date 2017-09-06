@@ -58,6 +58,7 @@ public class ShopTrasnferLog {
             Transaction beginTransaction = openSession.beginTransaction();
             Criteria createCriteria = openSession.createCriteria(pojo.ShopTransferLog.class);
             openSession.save(shopTransfer);
+            
             beginTransaction.commit();
             openSession.flush();
         } catch (Exception e) {
