@@ -27,7 +27,7 @@ public class ReportGenerator {
         if(ReportGenerator==null)ReportGenerator=new ReportGenerator();
         return ReportGenerator;
     }
-    private void generate(String reportName,Map<String, Object> parameter){
+    public void generate(String reportName,Map<String, Object> parameter){
         try {
             String path="C:\\Program Files\\Common Files\\Report\\"+reportName;
             JasperReport RI = JasperCompileManager.compileReport(path);

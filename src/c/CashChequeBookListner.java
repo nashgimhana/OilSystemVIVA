@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JComboBox;
@@ -39,6 +40,7 @@ import pojo.Cheques;
 import pojo.DealCategory;
 import pojo.DealType;
 import pojo.MoneyBook;
+import report.ReportGenerator;
 import v.Cash_Check_Book;
 import v.ShowBankDetails;
 
@@ -658,7 +660,26 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                         ShowBankDetails.bankName = bankName;
                         ShowBankDetails.setVisible(true);
                     }
-                } else {
+                } else if (e.getSource() == this.Cash_Check_Book.btn_report_moneybook) {
+                    Date df=this.Cash_Check_Book.jdc_cash_from.getDate();
+                    Date dt=this.Cash_Check_Book.jdc_cash_to.getDate();
+                    boolean cashincome = this.Cash_Check_Book.jcb_income_cash.isSelected();
+                    boolean cashexpend = this.Cash_Check_Book.jcb_expend_cash.isSelected();
+                    if(df!=null && dt!=null){
+                        ReportGenerator instance = report.ReportGenerator.getInstance();
+                        HashMap<String, Object> para = new HashMap<String, Object>();
+                        para.put("dateFrom", df);
+                        para.put("dateTo", dt);
+                        if(cashincome && cashexpend){
+                            instance.generate("MoneyBook.jrxml.", para);
+                        }else{
+                            
+                            instance.generate("MoneyBook.jrxml.", para);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Enter Date Range.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    }
+                }else {
                     JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Somethin went wrong. Try again.", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
