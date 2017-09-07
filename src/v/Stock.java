@@ -1492,7 +1492,7 @@ public class Stock extends javax.swing.JPanel {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             findSupIdByName = sc.findSupIdByName(txtsupplierid.getText());
             if (findSupIdByName != null) {
-                txtsupplierid.setForeground(Color.green);
+                txtsupplierid.setForeground(Color.BLUE);
             } else {
                 txtsupplierid.setForeground(Color.red);
             }
@@ -1551,7 +1551,7 @@ public class Stock extends javax.swing.JPanel {
             if (findPridByName != null) {
                 txtprname.setForeground(Color.green);
             } else {
-                txtprname.setForeground(Color.red);
+                txtprname.setForeground(Color.BLUE);
             }
         }
     }//GEN-LAST:event_txtprnameKeyTyped

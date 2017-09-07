@@ -698,7 +698,7 @@ public class SelfProducts extends javax.swing.JPanel {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             findPridByName1 = new selfproductcontroller().findPridByName(txtpr1name.getText());
             if (findPridByName1 != null) {
-                txtpr1name.setForeground(Color.green);
+                txtpr1name.setForeground(Color.BLUE);
                 lblpr1qty.setText(findPridByName1.getCurrentStock().toString());
 
             } else {
@@ -718,7 +718,7 @@ public class SelfProducts extends javax.swing.JPanel {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             findPridByName2 = new selfproductcontroller().findPridByName(txtpr2name.getText());
             if (findPridByName2 != null) {
-                txtpr2name.setForeground(Color.green);
+                txtpr2name.setForeground(Color.BLUE);
                 lblpr2qty.setText(findPridByName2.getCurrentStock().toString());
 
             } else {
@@ -1100,7 +1100,7 @@ public class SelfProducts extends javax.swing.JPanel {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             findbottlepr1ByName2 = new selfproductcontroller().findPridByName(txtbottleprname.getText());
             if (findbottlepr1ByName2 != null) {
-                txtbottleprname.setForeground(Color.green);
+                txtbottleprname.setForeground(Color.BLUE);
 
             } else {
                 txtbottleprname.setForeground(Color.red);
@@ -1132,7 +1132,7 @@ public class SelfProducts extends javax.swing.JPanel {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             findbottlepr1ByName1 = new selfproductcontroller().findPridByName(txtbottlepr1name.getText());
             if (findbottlepr1ByName1 != null) {
-                txtbottlepr1name.setForeground(Color.green);
+                txtbottlepr1name.setForeground(Color.BLUE);
                 lblbtavailbleqty.setText(findbottlepr1ByName1.getCurrentStock().toString());
             } else {
                 txtbottlepr1name.setForeground(Color.red);
