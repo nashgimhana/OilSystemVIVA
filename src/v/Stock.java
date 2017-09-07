@@ -1062,10 +1062,9 @@ public class Stock extends javax.swing.JPanel {
             }
         });
 
-        listunit.setBackground(new java.awt.Color(51, 255, 51));
+        listunit.setBackground(new java.awt.Color(204, 204, 255));
         listunit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         listunit.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        listunit.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(listunit);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -1106,6 +1105,8 @@ public class Stock extends javax.swing.JPanel {
         jScrollPane8.setViewportView(jPanel5);
 
         jTabbedPane1.addTab("Add Units", jScrollPane8);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel20.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel20.setText("Date");
@@ -1549,7 +1550,7 @@ public class Stock extends javax.swing.JPanel {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             findPridByName = st.findPridByName(txtprname.getText());
             if (findPridByName != null) {
-                txtprname.setForeground(Color.green);
+                txtprname.setForeground(Color.BLUE);
             } else {
                 txtprname.setForeground(Color.BLUE);
             }
@@ -1934,9 +1935,7 @@ public class Stock extends javax.swing.JPanel {
         int selectedRow = tblgrnreport.getSelectedRow();
         int id = Integer.parseInt(tblgrnreport.getValueAt(selectedRow, 0).toString());
         if (id != 0) {
-            GrnReportView grnreport = new GrnReportView();
-            grnreport.grnsearch(id);
-            grnreport.setVisible(true);
+            new report.Psmodle().grn(id);
         } else {
             Errormzg.displayerrorMessage("please select supplier");
         }

@@ -324,7 +324,7 @@ public class SelfProducts extends javax.swing.JPanel {
 
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
         jLabel2.setText("Availabale quantity (KG) ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, -1, 31));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, -1, 31));
 
         lblpr2qty.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lblpr2qty.setForeground(new java.awt.Color(51, 51, 51));
