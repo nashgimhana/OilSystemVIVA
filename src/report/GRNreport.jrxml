@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2017-08-21T23:27:19 -->
+<!-- 2017-09-07T20:10:55 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GRNreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9215bafe-5dfd-4625-8e2f-0a1f0d69fcba">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="grnid" class="java.lang.Integer">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
@@ -12,9 +11,7 @@
  FROM grn INNER JOIN grn_log on grn.id = grn_log.grn_id
   INNER JOIN supplier on grn.supplier_id = supplier.id
    INNER JOIN product on grn_log.product_id = product.id 
-   WHERE grn.id =  $P{grnid} 
-
-]]>
+   WHERE grn.id =  $P{grnid}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -99,39 +96,39 @@
 				<textFieldExpression><![CDATA[$F{pname}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="80" width="40" height="20" uuid="d0981cab-3d3b-4f21-b3ec-93af681f78b1"/>
+				<reportElement x="0" y="80" width="60" height="20" uuid="d0981cab-3d3b-4f21-b3ec-93af681f78b1"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<text><![CDATA[Price ]]></text>
+				<text><![CDATA[Price Rs.]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="40" y="80" width="100" height="20" uuid="c02579c2-2f71-4c26-82cd-49e235b9c386"/>
+				<reportElement positionType="FixRelativeToBottom" x="60" y="80" width="90" height="20" uuid="c02579c2-2f71-4c26-82cd-49e235b9c386"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{current_price}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="210" y="80" width="30" height="20" uuid="621c71b5-3635-4929-9259-37b72e094fe9"/>
+				<reportElement x="179" y="80" width="30" height="20" uuid="621c71b5-3635-4929-9259-37b72e094fe9"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Qty]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="250" y="80" width="100" height="20" uuid="03042048-f3cd-4529-aabf-721206aacd16"/>
+				<reportElement x="210" y="80" width="100" height="20" uuid="03042048-f3cd-4529-aabf-721206aacd16"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="380" y="80" width="40" height="20" uuid="b10aeafc-fa48-450f-a30a-aa28f65d9ec6"/>
+				<reportElement x="360" y="80" width="60" height="20" uuid="b10aeafc-fa48-450f-a30a-aa28f65d9ec6"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Total ]]></text>
+				<text><![CDATA[Total Rs.]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="420" y="80" width="130" height="20" uuid="ba3a23b6-7e51-4c72-b6fe-1dc4b8d758a5"/>
@@ -140,6 +137,13 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="318" y="80" width="30" height="20" uuid="2c2dbd42-368f-4286-a958-69bb4441e871"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Kg]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
