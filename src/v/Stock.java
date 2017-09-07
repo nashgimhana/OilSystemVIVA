@@ -939,7 +939,7 @@ public class Stock extends javax.swing.JPanel {
 
         jScrollPane3.addComponentListener(c.StockListner.getInstance());
 
-        jTabbedPane1.addTab("Lost Mnage", jScrollPane3);
+        jTabbedPane1.addTab("Lost Manage", jScrollPane3);
         jScrollPane3.getAccessibleContext().setAccessibleName("lost_manage");
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));

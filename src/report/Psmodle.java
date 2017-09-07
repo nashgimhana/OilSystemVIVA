@@ -106,13 +106,14 @@ public class Psmodle {
     }
 
     //sesath
-    public void reportShopLog(String from,String to) {
+    public void reportShopLog(String from,String to, double total) {
         String path = "C:\\Program Files\\Common Files\\Report\\sp.jrxml";
         try {
             JasperReport RI = JasperCompileManager.compileReport(path);
             Map<String, Object> parameter = new HashMap<String, Object>();
-            parameter.put("empid", from);
-            parameter.put("bsid", to);
+            parameter.put("from", from);
+            parameter.put("to", to);
+            parameter.put("fulltot", total);
             JasperPrint printit = JasperFillManager.fillReport(RI, parameter, DB.getConnection());
             new JRViewer(printit);
             //JasperPrintManager.printReport(printit, false);

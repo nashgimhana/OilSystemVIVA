@@ -613,7 +613,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
 
         tab_summory.addComponentListener(c.CashChequeBookListner.getInstance());
 
-        tpnl_cashcheque.addTab("     Summory     ", tab_summory);
+        tpnl_cashcheque.addTab("     Summary     ", tab_summory);
 
         tab_cash.addComponentListener(c.CashChequeBookListner.getInstance());
 

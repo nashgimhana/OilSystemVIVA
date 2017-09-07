@@ -840,8 +840,8 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Lost Mnage">
-                <Property name="tabTitle" type="java.lang.String" value="Lost Mnage"/>
+              <JTabbedPaneConstraints tabName="Lost Manage">
+                <Property name="tabTitle" type="java.lang.String" value="Lost Manage"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

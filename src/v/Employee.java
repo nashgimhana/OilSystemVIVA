@@ -613,7 +613,7 @@ public class Employee extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout tab_allLayout = new javax.swing.GroupLayout(tab_all);
@@ -882,7 +882,7 @@ public class Employee extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         tab_reg.add(jPanel4, java.awt.BorderLayout.CENTER);
@@ -1397,7 +1397,7 @@ public class Employee extends javax.swing.JPanel {
             tab_debitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tab_debitLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         Registraion.addTab("Credit", tab_debit);
@@ -1963,7 +1963,7 @@ public class Employee extends javax.swing.JPanel {
 
         tab_pay.add(jPanel3, java.awt.BorderLayout.CENTER);
 
-        Registraion.addTab("Salery Perment", tab_pay);
+        Registraion.addTab("Salary Peyment", tab_pay);
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
         jPanel22.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -2036,7 +2036,7 @@ public class Employee extends javax.swing.JPanel {
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -2156,7 +2156,7 @@ public class Employee extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        Registraion.addTab("Salery Tempory", jPanel22);
+        Registraion.addTab("Salary Temporary", jPanel22);
 
         jPanel1.add(Registraion, java.awt.BorderLayout.PAGE_START);
 
