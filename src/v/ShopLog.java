@@ -67,7 +67,7 @@ public class ShopLog extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Product", "Unit", "Transfer Quantitty", "Buying Price", "Total Tranfer Price"
+                "Date", "Product", "Unit", "Transfer Quantitty", "Buying Price(Rs)", "Total Tranfer Price(Rs)"
             }
         ) {
             boolean[] canEdit = new boolean [] {

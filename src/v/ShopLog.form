@@ -154,8 +154,8 @@
                     <Column editable="false" title="Product" type="java.lang.Object"/>
                     <Column editable="false" title="Unit" type="java.lang.Object"/>
                     <Column editable="false" title="Transfer Quantitty" type="java.lang.Object"/>
-                    <Column editable="false" title="Buying Price" type="java.lang.Object"/>
-                    <Column editable="false" title="Total Tranfer Price" type="java.lang.Object"/>
+                    <Column editable="false" title="Buying Price(Rs)" type="java.lang.Object"/>
+                    <Column editable="false" title="Total Tranfer Price(Rs)" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
