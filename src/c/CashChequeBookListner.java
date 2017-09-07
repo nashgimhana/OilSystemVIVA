@@ -523,22 +523,20 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                                             if (BankTo != null) {
                                                 int showConfirmDialog = JOptionPane.showConfirmDialog(this.Cash_Check_Book, "Do you want to transfer money from " + BankFrom.getBank() + " to " + BankTo.getBank(), "Transfer", JOptionPane.YES_NO_OPTION);
                                                 if (showConfirmDialog == 0) {
-                                                    MoneyBook moneyBook = new pojo.MoneyBook();
+                                                    pojo.BankDeals moneyBook = new pojo.BankDeals();
                                                     moneyBook.setDate(date);
+                                                    moneyBook.setBank(BankFrom);
                                                     moneyBook.setAmount(amount);
-                                                    moneyBook.setDscription("Transfer to " + BankTo.getBank());
-                                                    moneyBook.setDealCategory(new m.DealCategory().getBy(2));
-                                                    moneyBook.setDealType(new m.DealType().getBy(28));
-                                                    String save = new m.MoneyBook().save(moneyBook);
+                                                    moneyBook.setDescription("Transfer to " + BankTo.getBank());
+                                                    String save = new m.BankDeals().save(moneyBook);
                                                     if (save.equalsIgnoreCase("done")) {
                                                         c.AssetControl.getInstance().updateBankAsset(bankF, amount, '-');
-                                                        MoneyBook moneyBook2 = new pojo.MoneyBook();
+                                                        pojo.BankDeals moneyBook2 = new pojo.BankDeals();
                                                         moneyBook2.setDate(date);
                                                         moneyBook2.setAmount(amount);
-                                                        moneyBook2.setDscription("Transfer from " + BankFrom.getBank());
-                                                        moneyBook2.setDealCategory(new m.DealCategory().getBy(1));
-                                                        moneyBook2.setDealType(new m.DealType().getBy(29));
-                                                        String save2 = new m.MoneyBook().save(moneyBook2);
+                                                        moneyBook2.setBank(BankTo);
+                                                        moneyBook2.setDescription("Transfer from " + BankFrom.getBank());
+                                                        String save2 = new m.BankDeals().save(moneyBook2);
                                                         if (save2.equalsIgnoreCase("done")) {
                                                             String updateBankAsset = c.AssetControl.getInstance().updateBankAsset(bankT, amount, '+');
                                                             if (updateBankAsset.equalsIgnoreCase("done")) {
