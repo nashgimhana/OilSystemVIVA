@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2017-09-07T21:24:06 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4f9b31e-20bb-4263-87c7-17d50fa91978">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="fulltot" class="java.lang.Double"/>
+	<parameter name="from" class="java.lang.String"/>
+	<parameter name="to" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT shop_transfer.date as 'date', 
+shop_transfer_log.quantity as qty, 
+product.`name` as pname, 
+grn_log.buying_price as bprice, 
+units.unit_name as unit,
+round ((shop_transfer_log.quantity * grn_log.buying_price),2) as subtot
+FROM shop_transfer 
+INNER JOIN shop_transfer_log ON shop_transfer.id = shop_transfer_log.shop_transfer_id 
+INNER JOIN grn_log on grn_log.id = shop_transfer_log.grn_log_id 
+INNER JOIN product on grn_log.product_id = product.id 
+INNER JOIN units on product.units_id = units.id 
+WHERE shop_transfer.date BETWEEN $P{from}  AND $P{to}]]>
+	</queryString>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Double"/>
+	<field name="pname" class="java.lang.String"/>
+	<field name="bprice" class="java.lang.Double"/>
+	<field name="unit" class="java.lang.String"/>
+	<field name="subtot" class="java.lang.Double"/>
+	<group name="date">
+		<groupExpression><![CDATA[$F{date}]]></groupExpression>
+	</group>
+	<group name="qty">
+		<groupExpression><![CDATA[$F{qty}]]></groupExpression>
+	</group>
+	<group name="pname">
+		<groupExpression><![CDATA[$F{pname}]]></groupExpression>
+	</group>
+	<group name="bprice">
+		<groupExpression><![CDATA[$F{bprice}]]></groupExpression>
+	</group>
+	<group name="unit">
+		<groupExpression><![CDATA[$F{unit}]]></groupExpression>
+	</group>
+	<group name="subtot">
+		<groupExpression><![CDATA[$F{subtot}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="156" y="2" width="250" height="30" uuid="7d70a2f1-db5f-4884-b84f-9219af1e4774"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Kalpani Oill Dilivers]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="20" uuid="285bbc9f-f558-48f1-809e-265b90e73b9a"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="100" height="20" uuid="070325d1-49bc-424c-87a6-f0eadee222af"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Prodct Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="100" height="20" uuid="d2676bd0-a0e4-4975-b024-375347617b12"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Buying Price (Rs)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="90" height="20" uuid="9e9c0f1a-ee9f-47da-a483-0615b37a8164"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="0" width="50" height="20" uuid="f9f91f15-79e8-4e57-80b1-78687e22e19c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[unit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="100" height="20" uuid="1196f0bd-4205-4b95-8386-ee92f1daa2f6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Transfer Price (Rs)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="30" uuid="e3bd7836-4c52-41b9-873d-b6b3ce291cbe"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="-1" width="100" height="30" uuid="b3745fe1-95ed-4d4c-b372-e3514f60867e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="1" width="100" height="30" uuid="b939d5f3-71b8-4a0d-a886-3b1259d0716a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{bprice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="90" height="30" uuid="4d9e161e-0e1a-4375-884a-92fbd4c8985d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="0" width="50" height="30" uuid="44908294-650e-4f6d-b72b-579bba01e951"/>
+				<textFieldExpression><![CDATA[$F{unit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="100" height="30" uuid="d867e507-3d8b-4269-82e8-bf6d9fc31ac4"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subtot}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="3" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="106" splitType="Stretch">
+			<staticText>
+				<reportElement x="380" y="30" width="68" height="22" uuid="5281dadc-3b70-456a-a91f-260ffdba5b74"/>
+				<text><![CDATA[Full Total Rs :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="30" width="100" height="22" uuid="7bd0f27e-89d2-437e-a34e-37ec941ee415"/>
+				<textFieldExpression><![CDATA[$P{fulltot}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
