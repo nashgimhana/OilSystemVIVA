@@ -41,6 +41,8 @@ public class Psmodle {
     public static void main(String[] args) {
         // new Psmodle().invoiceReport(2, 350.00);
        //   grn(3);
+       new Psmodle().reportShopLog("2017-04-01", "2017-04-01", 4500);
+       
     }
 
     public void invoiceReport(int inid, double credit, double payedValue) {
@@ -107,7 +109,7 @@ public class Psmodle {
 
     //sesath
     public void reportShopLog(String from,String to, double total) {
-        String path = "C:\\Program Files\\Common Files\\Report\\sp.jrxml";
+        String path = "D:\\Java Institute\\GroupProject\\OilSystemVIVA\\src\\report\\Blank_A4_1.jrxml";
         try {
             JasperReport RI = JasperCompileManager.compileReport(path);
             Map<String, Object> parameter = new HashMap<String, Object>();
