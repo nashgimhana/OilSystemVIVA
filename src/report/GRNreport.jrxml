@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2017-09-07T18:52:53 -->
+<!-- 2017-09-07T20:10:55 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GRNreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9215bafe-5dfd-4625-8e2f-0a1f0d69fcba">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="grnid" class="java.lang.Integer">
@@ -110,7 +110,7 @@
 				<textFieldExpression><![CDATA[$F{current_price}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="180" y="80" width="30" height="20" uuid="621c71b5-3635-4929-9259-37b72e094fe9"/>
+				<reportElement x="179" y="80" width="30" height="20" uuid="621c71b5-3635-4929-9259-37b72e094fe9"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
