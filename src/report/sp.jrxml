@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2017-07-17T08:52:58 -->
+<!-- 2017-09-07T18:43:55 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sp" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bcf8277-59d1-402b-82de-68e0397ece7c">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="empid" class="java.lang.Integer"/>
@@ -167,7 +167,7 @@ WHERE employee.id = $P{empid}  and basic_salery.id =  $P{bsid}  and attenence_lo
 				<textFieldExpression><![CDATA[$F{lname}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="23" y="27" width="60" height="22" uuid="79d36b48-8c97-4446-a54c-c90d9c565391"/>
+				<reportElement x="23" y="29" width="60" height="22" uuid="79d36b48-8c97-4446-a54c-c90d9c565391"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -349,6 +349,48 @@ WHERE employee.id = $P{empid}  and basic_salery.id =  $P{bsid}  and attenence_lo
 					<font fontName="Arial Black" size="10" isBold="false"/>
 				</textElement>
 				<text><![CDATA[XOcodes Software Team     -     0713470485]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="390" y="221" width="40" height="29" uuid="45c47ef4-027c-49dc-829a-4dfca268d4a8"/>
+				<textElement textAlignment="Right">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="400" y="150" width="30" height="21" uuid="eb163818-d4ca-4a2e-87a9-6d9dc2ffed80"/>
+				<textElement textAlignment="Right">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="400" y="124" width="30" height="21" uuid="a7749b83-f04f-4841-8a58-79338bbd9fca"/>
+				<textElement textAlignment="Right">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="400" y="89" width="30" height="21" uuid="8e21c849-50b2-4143-90a8-e1dfdb3811c2"/>
+				<textElement textAlignment="Right">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="400" y="59" width="30" height="21" uuid="9ce060b0-816f-4a3f-8220-060494019c86"/>
+				<textElement textAlignment="Right">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="400" y="31" width="30" height="21" uuid="87d06364-a41e-4644-8bee-491756188c3f"/>
+				<textElement textAlignment="Right">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Rs.]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
