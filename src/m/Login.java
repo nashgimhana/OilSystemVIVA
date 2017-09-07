@@ -18,7 +18,6 @@ import org.hibernate.criterion.Restrictions;
 public class Login {
 
     public void login(String uname, String pass, JFrame frame) {
-     
         Session ses = conn.NewHibernateUtil.getSessionFactory().openSession();
         try {
             Criteria cry = ses.createCriteria(pojo.Login.class);
@@ -39,6 +38,5 @@ public class Login {
         } finally {
             ses.close();
         }
-
     }
 }
