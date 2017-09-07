@@ -105,5 +105,21 @@ public class Psmodle {
         }
     }
 
-    
+    //sesath
+    public void reportShopLog(String from,String to) {
+        String path = "C:\\Program Files\\Common Files\\Report\\sp.jrxml";
+        try {
+            JasperReport RI = JasperCompileManager.compileReport(path);
+            Map<String, Object> parameter = new HashMap<String, Object>();
+            parameter.put("empid", from);
+            parameter.put("bsid", to);
+            JasperPrint printit = JasperFillManager.fillReport(RI, parameter, DB.getConnection());
+            new JRViewer(printit);
+            //JasperPrintManager.printReport(printit, false);
+            JasperViewer.viewReport(printit, false);
+        } catch (Exception e) {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+    }
 }
