@@ -68,7 +68,7 @@ public class ShopLogControl {
             v.add(Total);
             dtm.addRow(v);
             System.out.println("#############################");
-            
+            System.out.println("Date : "+from.getDate()+"TO : "+to.getDate());
                 
         }
         } catch (Exception e) {
