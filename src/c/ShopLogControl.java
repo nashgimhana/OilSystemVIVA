@@ -7,6 +7,7 @@ package c;
 
 import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JTable;
@@ -67,6 +68,8 @@ public class ShopLogControl {
             v.add(Total);
             dtm.addRow(v);
             System.out.println("#############################");
+            
+                
         }
         } catch (Exception e) {
             e.printStackTrace();
