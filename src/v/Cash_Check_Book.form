@@ -41,7 +41,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel2" max="32767" attributes="0"/>
+                  <Component id="jPanel2" pref="1109" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -168,7 +168,7 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jScrollPane8" pref="723" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane8" pref="1047" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1064,9 +1064,14 @@
                                                   <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jPanel33" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="cmb_dealtype" min="-2" pref="164" max="-2" attributes="0"/>
+                                                      <Component id="btn_report_bytype" min="-2" pref="92" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="0" pref="235" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1081,11 +1086,16 @@
                                       <Component id="jPanel33" max="32767" attributes="0"/>
                                       <Component id="jPanel12" max="32767" attributes="0"/>
                                       <Component id="jPanel14" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="cmb_dealtype" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btn_report_bytype" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbl_message_cash" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                  <Component id="jPanel13" pref="410" max="32767" attributes="0"/>
+                                  <Component id="jPanel13" pref="492" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1177,18 +1187,21 @@
                                       <Component id="jdc_cash_to" min="-2" pref="127" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btn_cash_search_range" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btn_report_moneybook" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jdc_cash_from" alignment="0" pref="30" max="32767" attributes="0"/>
                                           <Component id="btn_cash_search_range" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jdc_cash_to" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="btn_report_moneybook" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -1230,6 +1243,15 @@
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btn_cash_search_range.addMouseListener(c.CashChequeBookListner.getInstance());"/>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btn_report_moneybook">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Get Report"/>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btn_report_moneybook.addMouseListener(c.CashChequeBookListner.getInstance());"/>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                               </AuxValues>
                             </Component>
@@ -1397,6 +1419,28 @@
                             </Component>
                           </SubComponents>
                         </Container>
+                        <Component class="javax.swing.JComboBox" name="cmb_dealtype">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="1">
+                                <StringItem index="0" value="Select"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btn_report_bytype">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Get Report"/>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btn_report_bytype.addMouseListener(c.CashChequeBookListner.getInstance());"/>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                          </AuxValues>
+                        </Component>
                       </SubComponents>
                     </Container>
                   </SubComponents>
@@ -1438,7 +1482,7 @@
                                       <Component id="jScrollPane10" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Component id="jPanel24" min="-2" pref="586" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="139" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="316" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane13" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -1459,7 +1503,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jScrollPane10" min="-2" pref="273" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jScrollPane13" min="-2" pref="225" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane13" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1481,12 +1525,27 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel39" min="-2" pref="56" max="-2" attributes="0"/>
-                                          <Component id="cmb_chequebook_bank" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
-                                          <Component id="btn_proceed" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
-                                          <Component id="btn_returncheque" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
+                                          <Component id="cmb_cheque_type" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="jLabel39" min="-2" pref="56" max="-2" attributes="0"/>
+                                                      <Component id="cmb_chequebook_bank" alignment="0" pref="145" max="32767" attributes="0"/>
+                                                      <Component id="btn_proceed" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
+                                                      <Component id="btn_returncheque" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
+                                                      <Component id="cmb_cheque_status" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="btn_report_bank_sum" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
+                                                  <Component id="jdc_bank_to" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                                                  <Component id="btn_report_cheque" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                                  <Component id="btn_report_bank_deal" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                                                  <Component id="jdc_bank_from" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                                                  <Component id="cmb_chequebook_bank1" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace pref="107" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1496,12 +1555,28 @@
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cmb_chequebook_bank" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="cmb_chequebook_bank" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btn_proceed" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btn_returncheque" min="-2" pref="31" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="btn_report_bank_sum" min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="cmb_chequebook_bank1" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jdc_bank_from" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jdc_bank_to" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btn_report_bank_deal" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                                      <Component id="cmb_cheque_status" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cmb_cheque_type" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btn_report_cheque" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1543,6 +1618,86 @@
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btn_returncheque.addMouseListener(c.CashChequeBookListner.getInstance());"/>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JComboBox" name="cmb_cheque_status">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Pending"/>
+                                    <StringItem index="1" value="Dealed"/>
+                                  </StringArray>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JComboBox" name="cmb_cheque_type">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Receive"/>
+                                    <StringItem index="1" value="Pay"/>
+                                  </StringArray>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btn_report_cheque">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Get Report"/>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btn_report_bank_sum">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Bank Summory"/>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btn_report_bank_sum.addMouseListener(c.CashChequeBookListner.getInstance());"/>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="com.toedter.calendar.JDateChooser" name="jdc_bank_from">
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="com.toedter.calendar.JDateChooser" name="jdc_bank_to">
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btn_report_bank_deal">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Bank Deal Details"/>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btn_report_bank_deal.addMouseListener(c.CashChequeBookListner.getInstance());"/>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JComboBox" name="cmb_chequebook_bank1">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Tahoma" size="14" style="0"/>
+                                </Property>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="1">
+                                    <StringItem index="0" value="Select"/>
+                                  </StringArray>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                               </AuxValues>
                             </Component>
@@ -1868,7 +2023,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="624" max="32767" attributes="0"/>
+                                          <EmptySpace pref="704" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -1877,7 +2032,7 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="66" max="32767" attributes="0"/>
+                                          <EmptySpace pref="148" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -2226,7 +2381,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="607" max="32767" attributes="0"/>
+                                          <EmptySpace pref="737" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -2235,7 +2390,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                                          <EmptySpace pref="59" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -2269,16 +2424,16 @@
                                                   <Component id="jPanel30" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jPanel31" max="32767" attributes="0"/>
                                                   <Group type="102" attributes="0">
-                                                      <Component id="jLabel8" min="-2" pref="307" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="jLabel8" min="-2" pref="307" max="-2" attributes="0"/>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                                              <Component id="btn_clear_chequedeal" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                              <Component id="btn_add_chequedeal" min="-2" pref="107" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                                      <Component id="btn_clear_chequedeal" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="btn_add_chequedeal" min="-2" pref="107" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="btn_proceed_chequedeal" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -2305,14 +2460,11 @@
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jPanel31" min="-2" pref="41" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="btn_proceed_chequedeal" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="btn_add_chequedeal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                                      <Component id="btn_clear_chequedeal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                                  </Group>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="btn_add_chequedeal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                                  <Component id="btn_clear_chequedeal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -2634,17 +2786,6 @@
                                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                                       </AuxValues>
                                     </Component>
-                                    <Component class="javax.swing.JButton" name="btn_proceed_chequedeal">
-                                      <Properties>
-                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                          <Font name="Tahoma" size="14" style="0"/>
-                                        </Property>
-                                        <Property name="text" type="java.lang.String" value="Proceed"/>
-                                      </Properties>
-                                      <AuxValues>
-                                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                                      </AuxValues>
-                                    </Component>
                                   </SubComponents>
                                 </Container>
                               </SubComponents>
@@ -2681,7 +2822,7 @@
                                           <Component id="jPanel45" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jPanel46" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="39" max="32767" attributes="0"/>
+                                          <EmptySpace pref="290" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -2693,7 +2834,7 @@
                                               <Component id="jPanel45" min="-2" max="-2" attributes="0"/>
                                               <Component id="jPanel46" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="212" max="32767" attributes="0"/>
+                                          <EmptySpace pref="296" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -3064,7 +3205,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="lbl_message_setup" min="-2" pref="425" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="551" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="648" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel3" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -3078,7 +3219,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbl_message_setup" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jPanel3" pref="569" max="32767" attributes="0"/>
+                                  <Component id="jPanel3" pref="571" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -3425,7 +3566,7 @@
                                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="txt_bank_amount" min="-2" pref="33" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <EmptySpace pref="13" max="32767" attributes="0"/>
                                               <Component id="btn_add_bank" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>

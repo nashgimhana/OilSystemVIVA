@@ -22,7 +22,6 @@ public class frmBackUp extends javax.swing.JFrame {
     public frmBackUp() {
         initComponents();
         backup = ObjectGenarater.getBackup();
-
     }
 
     /**

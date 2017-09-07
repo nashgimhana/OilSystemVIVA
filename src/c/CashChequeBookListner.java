@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JComboBox;
@@ -39,6 +40,7 @@ import pojo.Cheques;
 import pojo.DealCategory;
 import pojo.DealType;
 import pojo.MoneyBook;
+import report.ReportGenerator;
 import v.Cash_Check_Book;
 import v.ShowBankDetails;
 
@@ -521,22 +523,20 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                                             if (BankTo != null) {
                                                 int showConfirmDialog = JOptionPane.showConfirmDialog(this.Cash_Check_Book, "Do you want to transfer money from " + BankFrom.getBank() + " to " + BankTo.getBank(), "Transfer", JOptionPane.YES_NO_OPTION);
                                                 if (showConfirmDialog == 0) {
-                                                    MoneyBook moneyBook = new pojo.MoneyBook();
+                                                    pojo.BankDeals moneyBook = new pojo.BankDeals();
                                                     moneyBook.setDate(date);
+                                                    moneyBook.setBank(BankFrom);
                                                     moneyBook.setAmount(amount);
-                                                    moneyBook.setDscription("Transfer to " + BankTo.getBank());
-                                                    moneyBook.setDealCategory(new m.DealCategory().getBy(2));
-                                                    moneyBook.setDealType(new m.DealType().getBy(28));
-                                                    String save = new m.MoneyBook().save(moneyBook);
+                                                    moneyBook.setDescription("Transfer to " + BankTo.getBank());
+                                                    String save = new m.BankDeals().save(moneyBook);
                                                     if (save.equalsIgnoreCase("done")) {
                                                         c.AssetControl.getInstance().updateBankAsset(bankF, amount, '-');
-                                                        MoneyBook moneyBook2 = new pojo.MoneyBook();
+                                                        pojo.BankDeals moneyBook2 = new pojo.BankDeals();
                                                         moneyBook2.setDate(date);
                                                         moneyBook2.setAmount(amount);
-                                                        moneyBook2.setDscription("Transfer from " + BankFrom.getBank());
-                                                        moneyBook2.setDealCategory(new m.DealCategory().getBy(1));
-                                                        moneyBook2.setDealType(new m.DealType().getBy(29));
-                                                        String save2 = new m.MoneyBook().save(moneyBook2);
+                                                        moneyBook2.setBank(BankTo);
+                                                        moneyBook2.setDescription("Transfer from " + BankFrom.getBank());
+                                                        String save2 = new m.BankDeals().save(moneyBook2);
                                                         if (save2.equalsIgnoreCase("done")) {
                                                             String updateBankAsset = c.AssetControl.getInstance().updateBankAsset(bankT, amount, '+');
                                                             if (updateBankAsset.equalsIgnoreCase("done")) {
@@ -658,7 +658,79 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
                         ShowBankDetails.bankName = bankName;
                         ShowBankDetails.setVisible(true);
                     }
-                } else {
+                } else if (e.getSource() == this.Cash_Check_Book.btn_report_moneybook) {
+                    Date df=this.Cash_Check_Book.jdc_cash_from.getDate();
+                    Date dt=this.Cash_Check_Book.jdc_cash_to.getDate();
+                    boolean cashincome = this.Cash_Check_Book.jcb_income_cash.isSelected();
+                    boolean cashexpend = this.Cash_Check_Book.jcb_expend_cash.isSelected();
+                    if(df!=null && dt!=null){
+                        ReportGenerator instance = report.ReportGenerator.getInstance();
+                        HashMap<String, Object> para = new HashMap<String, Object>();
+                        para.put("dateFrom", df);
+                        para.put("dateTo", dt);
+                        if(cashincome && cashexpend){
+                            instance.generate("MoneyBook.jrxml", para);
+                        }else{
+                            if(cashincome)
+                            para.put("dealCat", 1);
+                            else
+                            para.put("dealCat", 2);
+                            instance.generate("MoneyBookDealCategory.jrxml", para);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Enter Date Range.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    }
+                }else if (e.getSource() == this.Cash_Check_Book.btn_report_cheque) {
+                    int status=this.Cash_Check_Book.cmb_cheque_status.getSelectedIndex();
+                    int type=this.Cash_Check_Book.cmb_cheque_type.getSelectedIndex();
+                    String ty="";
+                    if(type==0)ty="+";
+                    else ty="-";
+                    ReportGenerator instance = report.ReportGenerator.getInstance();
+                    HashMap<String, Object> para = new HashMap<String, Object>();
+                    para.put("chequeStatus", status);
+                    para.put("chequeType", ty);
+                    instance.generate("ChequePending.jrxml", para);
+                }else if (e.getSource() == this.Cash_Check_Book.btn_report_bytype) {
+                    Date df=this.Cash_Check_Book.jdc_cash_from.getDate();
+                    Date dt=this.Cash_Check_Book.jdc_cash_to.getDate();
+                    if(df!=null&&dt!=null){
+                    int selectedIndex = this.Cash_Check_Book.cmb_dealtype.getSelectedIndex();
+                    if(selectedIndex>0){
+                    ReportGenerator instance = report.ReportGenerator.getInstance();
+                    HashMap<String, Object> para = new HashMap<String, Object>();
+                    para.put("dealType", selectedIndex);
+                    para.put("dateFrom", df);
+                    para.put("dateTo", dt);
+                    instance.generate("MoneyBookDealType.jrxml", para);
+                    }else{
+                        JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Select Deal Type", "Warning", JOptionPane.WARNING_MESSAGE);
+                    }
+                    }else{
+                        JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Select Date Range", "Warning", JOptionPane.WARNING_MESSAGE);
+                    }
+                }else if (e.getSource() == this.Cash_Check_Book.btn_report_bank_sum) {
+                    ReportGenerator instance = report.ReportGenerator.getInstance();
+                    instance.generate("BankSummory.jrxml", null);
+                }else if (e.getSource() == this.Cash_Check_Book.btn_report_bank_deal) {
+                    int selectedIndex = this.Cash_Check_Book.cmb_chequebook_bank1.getSelectedIndex();
+                    if(selectedIndex>0){
+                    Date df=this.Cash_Check_Book.jdc_bank_from.getDate();
+                    Date dt=this.Cash_Check_Book.jdc_bank_to.getDate();
+                    ReportGenerator instance = report.ReportGenerator.getInstance();
+                    HashMap<String, Object> para = new HashMap<String, Object>();
+                    para.put("bankId", selectedIndex);
+                    if(df!=null&&dt!=null){
+                        para.put("dateFrom", df);
+                        para.put("dateTo", dt);
+                        instance.generate("BankDealDetailsDateRange.jrxml", para);
+                    }else{
+                        instance.generate("BankDealDetails.jrxml", para);
+                    }
+                    }else{
+                        JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Select Bank", "Warning", JOptionPane.WARNING_MESSAGE);
+                    }
+                }else {
                     JOptionPane.showMessageDialog(v.Cash_Check_Book.getInstance(), "Somethin went wrong. Try again.", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
@@ -712,11 +784,13 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
             if (e.getSource() == this.Cash_Check_Book.tab_cash) {
                 this.msg = this.Cash_Check_Book.lbl_message_cash;
                 this.tbl = this.Cash_Check_Book.tbl_cash;
+                loadDealTypeToCombo(this.Cash_Check_Book.cmb_dealtype);
                 loadCashBookWithInMonth();
             } // cheque tab
             else if (e.getSource() == this.Cash_Check_Book.tab_cheque) {
                 loadPendingCheques();
                 loadBankToCombo(this.Cash_Check_Book.cmb_chequebook_bank);
+                loadBankToCombo(this.Cash_Check_Book.cmb_chequebook_bank1);
             } // setup tab
             else if (e.getSource() == this.Cash_Check_Book.tab_setup) {
                 this.msg = this.Cash_Check_Book.lbl_message_setup;

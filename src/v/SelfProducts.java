@@ -1190,9 +1190,7 @@ public class SelfProducts extends javax.swing.JPanel {
         try {
             double extracost = morecost * bottleqty;
             extracost = Math.round(extracost * 100.0) / 100.0;
-
             int done = new c.selfproductcontroller().btlExtraCosts(extracost, bottledate.getDate());
-
             return done;
         } catch (Exception e) {
             e.printStackTrace();

@@ -83,6 +83,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         jdc_cash_from = new com.toedter.calendar.JDateChooser();
         jdc_cash_to = new com.toedter.calendar.JDateChooser();
         btn_cash_search_range = new javax.swing.JButton();
+        btn_report_moneybook = new javax.swing.JButton();
         lbl_message_cash = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -90,6 +91,8 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         jPanel33 = new javax.swing.JPanel();
         jcb_income_cash = new javax.swing.JCheckBox();
         jcb_expend_cash = new javax.swing.JCheckBox();
+        cmb_dealtype = new javax.swing.JComboBox<>();
+        btn_report_bytype = new javax.swing.JButton();
         tab_cheque = new javax.swing.JScrollPane();
         pnl_cheque = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
@@ -97,6 +100,14 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         jLabel39 = new javax.swing.JLabel();
         btn_proceed = new javax.swing.JButton();
         btn_returncheque = new javax.swing.JButton();
+        cmb_cheque_status = new javax.swing.JComboBox<>();
+        cmb_cheque_type = new javax.swing.JComboBox<>();
+        btn_report_cheque = new javax.swing.JButton();
+        btn_report_bank_sum = new javax.swing.JButton();
+        jdc_bank_from = new com.toedter.calendar.JDateChooser();
+        jdc_bank_to = new com.toedter.calendar.JDateChooser();
+        btn_report_bank_deal = new javax.swing.JButton();
+        cmb_chequebook_bank1 = new javax.swing.JComboBox<>();
         jScrollPane10 = new javax.swing.JScrollPane();
         tbl_cheque_recive = new javax.swing.JTable();
         jPanel24 = new javax.swing.JPanel();
@@ -164,7 +175,6 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         txt_cheque_number = new javax.swing.JTextField();
         btn_add_chequedeal = new javax.swing.JButton();
         btn_clear_chequedeal = new javax.swing.JButton();
-        btn_proceed_chequedeal = new javax.swing.JButton();
         tab_transfer = new javax.swing.JScrollPane();
         jPanel44 = new javax.swing.JPanel();
         jPanel45 = new javax.swing.JPanel();
@@ -258,7 +268,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         jPanel40Layout.setHorizontalGroup(
             jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel40Layout.createSequentialGroup()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel40Layout.setVerticalGroup(
@@ -654,6 +664,9 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         btn_cash_search_range.setText("Search");
         btn_cash_search_range.addMouseListener(c.CashChequeBookListner.getInstance());
 
+        btn_report_moneybook.setText("Get Report");
+        btn_report_moneybook.addMouseListener(c.CashChequeBookListner.getInstance());
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
@@ -665,16 +678,19 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addComponent(jdc_cash_to, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_cash_search_range)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_report_moneybook)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+            .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jdc_cash_from, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(btn_cash_search_range, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jdc_cash_to, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jdc_cash_from, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(btn_cash_search_range, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jdc_cash_to, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_report_moneybook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -755,6 +771,11 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        cmb_dealtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+
+        btn_report_bytype.setText("Get Report");
+        btn_report_bytype.addMouseListener(c.CashChequeBookListner.getInstance());
+
         javax.swing.GroupLayout pnl_cashLayout = new javax.swing.GroupLayout(pnl_cash);
         pnl_cash.setLayout(pnl_cashLayout);
         pnl_cashLayout.setHorizontalGroup(
@@ -771,8 +792,12 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 235, Short.MAX_VALUE)))
+                                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(pnl_cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cmb_dealtype, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_report_bytype, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnl_cashLayout.setVerticalGroup(
@@ -782,11 +807,15 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addGroup(pnl_cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnl_cashLayout.createSequentialGroup()
+                        .addComponent(cmb_dealtype, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_report_bytype, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_message_cash)
                 .addGap(16, 16, 16)
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -814,6 +843,21 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         btn_returncheque.setText("Return Cheque");
         btn_returncheque.addMouseListener(c.CashChequeBookListner.getInstance());
 
+        cmb_cheque_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Dealed" }));
+
+        cmb_cheque_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Receive", "Pay" }));
+
+        btn_report_cheque.setText("Get Report");
+
+        btn_report_bank_sum.setText("Bank Summory");
+        btn_report_bank_sum.addMouseListener(c.CashChequeBookListner.getInstance());
+
+        btn_report_bank_deal.setText("Bank Deal Details");
+        btn_report_bank_deal.addMouseListener(c.CashChequeBookListner.getInstance());
+
+        cmb_chequebook_bank1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmb_chequebook_bank1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
@@ -821,11 +865,23 @@ public class Cash_Check_Book extends javax.swing.JPanel {
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_chequebook_bank, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_proceed, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_returncheque, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
+                    .addComponent(cmb_cheque_type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmb_chequebook_bank, 0, 145, Short.MAX_VALUE)
+                                .addComponent(btn_proceed, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_returncheque, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmb_cheque_status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btn_report_bank_sum, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jdc_bank_to, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_report_cheque, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_report_bank_deal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jdc_bank_from, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_chequebook_bank1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 10, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -833,12 +889,28 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel39)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmb_chequebook_bank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(cmb_chequebook_bank, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_proceed)
-                .addGap(79, 79, 79)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_returncheque, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(btn_report_bank_sum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(cmb_chequebook_bank1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jdc_bank_from, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jdc_bank_to, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_report_bank_deal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(cmb_cheque_status, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_cheque_type, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_report_cheque, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
         jScrollPane10.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -975,7 +1047,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                     .addComponent(jScrollPane10)
                     .addGroup(pnl_chequeLayout.createSequentialGroup()
                         .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 139, Short.MAX_VALUE))
+                        .addGap(0, 316, Short.MAX_VALUE))
                     .addComponent(jScrollPane13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -992,7 +1064,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1139,14 +1211,14 @@ public class Cash_Check_Book extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(624, Short.MAX_VALUE))
+                .addContainerGap(704, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         tab_cashdeal.setViewportView(jPanel4);
@@ -1262,9 +1334,6 @@ public class Cash_Check_Book extends javax.swing.JPanel {
         btn_clear_chequedeal.setText("Clear");
         btn_clear_chequedeal.addMouseListener(c.CashChequeBookListner.getInstance());
 
-        btn_proceed_chequedeal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_proceed_chequedeal.setText("Proceed");
-
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
@@ -1280,15 +1349,14 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                     .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(btn_clear_chequedeal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_add_chequedeal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_proceed_chequedeal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel18Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(btn_clear_chequedeal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_add_chequedeal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel18Layout.setVerticalGroup(
@@ -1311,12 +1379,10 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_proceed_chequedeal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_add_chequedeal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_clear_chequedeal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(45, 45, 45))
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_add_chequedeal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_clear_chequedeal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1326,14 +1392,14 @@ public class Cash_Check_Book extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(607, Short.MAX_VALUE))
+                .addContainerGap(737, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         tab_chequedeal.setViewportView(jPanel5);
@@ -1499,7 +1565,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
         jPanel44Layout.setVerticalGroup(
             jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1508,7 +1574,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addGroup(jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
 
         tab_transfer.setViewportView(jPanel44);
@@ -1673,7 +1739,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_bank_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(btn_add_bank)
                 .addContainerGap())
         );
@@ -1763,7 +1829,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(lbl_message_setup, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 551, Short.MAX_VALUE))
+                        .addGap(0, 648, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1773,7 +1839,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lbl_message_setup)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1795,7 +1861,7 @@ public class Cash_Check_Book extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1109, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -1832,7 +1898,11 @@ public class Cash_Check_Book extends javax.swing.JPanel {
     public javax.swing.JButton btn_clear_chequedeal;
     public javax.swing.JButton btn_dealtype;
     public javax.swing.JButton btn_proceed;
-    public javax.swing.JButton btn_proceed_chequedeal;
+    public javax.swing.JButton btn_report_bank_deal;
+    public javax.swing.JButton btn_report_bank_sum;
+    public javax.swing.JButton btn_report_bytype;
+    public javax.swing.JButton btn_report_cheque;
+    public javax.swing.JButton btn_report_moneybook;
     public javax.swing.JButton btn_returncheque;
     public javax.swing.JButton btn_trans_bank_transfer;
     public javax.swing.JButton btn_trans_cash_transfer;
@@ -1841,8 +1911,12 @@ public class Cash_Check_Book extends javax.swing.JPanel {
     public javax.swing.JComboBox<String> cmb_cash_dealtype;
     public javax.swing.JComboBox<String> cmb_cheque_dealcategory;
     public javax.swing.JComboBox<String> cmb_cheque_dealtype;
+    public javax.swing.JComboBox<String> cmb_cheque_status;
+    public javax.swing.JComboBox<String> cmb_cheque_type;
     public javax.swing.JComboBox<String> cmb_chequebook_bank;
+    public javax.swing.JComboBox<String> cmb_chequebook_bank1;
     public javax.swing.JComboBox<String> cmb_dealcategory;
+    public javax.swing.JComboBox<String> cmb_dealtype;
     public javax.swing.JComboBox<String> cmb_trans_bank_bankfrom;
     public javax.swing.JComboBox<String> cmb_trans_bank_bankto;
     public javax.swing.JComboBox<String> cmb_trans_cash_bank;
@@ -1945,6 +2019,8 @@ public class Cash_Check_Book extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JCheckBox jcb_expend_cash;
     public javax.swing.JCheckBox jcb_income_cash;
+    public com.toedter.calendar.JDateChooser jdc_bank_from;
+    public com.toedter.calendar.JDateChooser jdc_bank_to;
     public com.toedter.calendar.JDateChooser jdc_cash_date;
     public com.toedter.calendar.JDateChooser jdc_cash_dealdate;
     public com.toedter.calendar.JDateChooser jdc_cash_from;

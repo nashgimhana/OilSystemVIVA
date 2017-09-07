@@ -28,7 +28,7 @@ public class TblRenderCheque extends JLabel implements TableCellRenderer {
 
     public TblRenderCheque() {
         this.setOpaque(true);
-        this.setForeground(Color.WHITE);
+        this.setForeground(Color.BLACK);
         this.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
     }
 

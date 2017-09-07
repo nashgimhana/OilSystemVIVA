@@ -1883,7 +1883,6 @@ public class Stock extends javax.swing.JPanel {
     private void btnsearchgrnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsearchgrnMouseReleased
         // TODO add your handling code here:
         try {
-
             Product products = new Product();
             ArrayList<pojo.Grn> grnlist = new m.Grn().getBy(grnreportdate.getDate());
             DefaultTableModel defaultTableModel = (DefaultTableModel) tblgrnreport.getModel();
@@ -1895,10 +1894,7 @@ public class Stock extends javax.swing.JPanel {
                 v.add(g.getId().toString());
                 v.add(supplier.getName());
                 defaultTableModel.addRow(v);
-//                    System.out.println(g.getDate());
-
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-09-07T07:33:20 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MoneyBook" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16edbea6-ed11-4009-a65e-0ff252e319a1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="b2lsZGIubW9uZXlfYm9vayBBUyAsMTQ1LDE1LDM4N2FkNzY5LWRjMTctNGIzNy1iMTRiLWFkMzZi&#xA;ZDQxNDAyNDs="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="dateFrom" class="java.util.Date"/>
+	<parameter name="dateTo" class="java.util.Date"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT oildb.money_book.date,
+	oildb.money_book.dscription,
+	oildb.money_book.amount
+FROM oildb.money_book
+where  oildb.money_book.date between  $P{dateFrom} and  $P{dateTo}]]>
+	</queryString>
+	<field name="date" class="java.sql.Date"/>
+	<field name="dscription" class="java.lang.String"/>
+	<field name="amount" class="java.lang.Double"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="90">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="110" backcolor="#52CC5A" uuid="066be057-b37d-48fa-bf11-99eae28815a0"/>
+				<staticText>
+					<reportElement x="20" y="14" width="410" height="43" forecolor="#FFFFFF" uuid="fc4dbd38-6792-47fa-aeec-92b36fbf5bd6"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[KALPANI OIL DILIVERS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="400" y="67" width="180" height="20" forecolor="#FFFFFF" uuid="57251956-070f-46c2-aba5-5fed36eba21d"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Money Book]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="57" width="200" height="20" forecolor="#FFFFFF" uuid="5f940a8b-d5e1-4984-b426-66395d779a4e"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Aralaganvila, Polonnaruwa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="85" width="40" height="20" forecolor="#FFFFFF" uuid="b2232c14-16ec-469e-a1b9-9de1e337097a"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[From]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="158" y="85" width="26" height="20" forecolor="#FFFFFF" uuid="b01564b0-63e0-4878-a371-72376b6ffbcd"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[to]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="60" y="86" width="92" height="18" uuid="e10b25d6-be11-4c7a-acd3-4282cff3e4b5"/>
+					<textFieldExpression><![CDATA[$P{dateFrom}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="188" y="86" width="102" height="18" uuid="9cf17cde-25d2-4832-bf86-a94de25c147f"/>
+					<textFieldExpression><![CDATA[$P{dateTo}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="185" height="24" backcolor="#52CC5A" uuid="5fda14ec-9c5d-403c-8db7-c7b7debc3656"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="0" width="185" height="24" backcolor="#52CC5A" uuid="e7e39600-e794-44ab-b316-3e9e8afd31f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="0" width="185" height="24" backcolor="#52CC5A" uuid="621bb4a9-a57b-43cb-b218-356abee50b6f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<textField>
+				<reportElement x="0" y="0" width="185" height="31" uuid="bc613bfe-4e2a-4900-94f1-f4d3fed944c7"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}.toLocalDate()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="31" uuid="03c5355e-581a-4306-bbc6-4d143531d14d"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dscription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="31" uuid="f15408cb-7f6b-4c15-aa82-2fb39fe749f4"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="df48074b-5939-46b6-944b-23a41af9a86a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="633d44cc-e1fa-4990-9361-f88a3cc86e5f"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="1d0e78c0-66e9-41b4-b18a-01f79cd3abb0"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -505,7 +505,6 @@ public class Employee {
     public void LoadEmployee(JTable tbl_emp, JLabel lb_etype, JLabel lb_eid, JLabel lb_efullname, JLabel lb_enic, JLabel lb_eaddress1, JLabel lb_eaddress2, JLabel lbl_cucredit) {
         Session ses = conn.NewHibernateUtil.getSessionFactory().openSession();
         int id = Integer.parseInt(tbl_emp.getValueAt(tbl_emp.getSelectedRow(), 0).toString());
-
         try {
             pojo.Employee empo = (pojo.Employee) ses.createCriteria(pojo.Employee.class).add(Restrictions.eq("id", id)).uniqueResult();
             setEmployee(empo);
@@ -520,7 +519,6 @@ public class Employee {
         } finally {
             ses.close();
         }
-
     }
 
     public void loadToUpdateEmp(JLabel lb_id, JComboBox emp_type, JTextField sname, JTextField fname, JTextField mname, JTextField lname, JTextField nic, JComboBox gender, JTextField addressline1, JTextField addressline2, JTextField phonenumber1, JTextField phonenumber2, JLabel lbl_empid, JButton btn_active) {

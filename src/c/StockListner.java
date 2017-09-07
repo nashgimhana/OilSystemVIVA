@@ -120,7 +120,6 @@ public class StockListner implements MouseListener,ComponentListener{
     }
     @Override
     public void componentShown(ComponentEvent e) {
-        
         if(e.getComponent().getAccessibleContext().getAccessibleName().equalsIgnoreCase("lost_manage")){
             this.setMsg(v.Stock.getInstance().getLabelMsgLost());
             this.setLost_productname(v.Stock.getInstance().getLabelProductnameLost());

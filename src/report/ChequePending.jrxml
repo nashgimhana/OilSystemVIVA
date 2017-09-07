@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-09-07T13:43:34 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ChequePending" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16edbea6-ed11-4009-a65e-0ff252e319a1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="chequeStatus" class="java.lang.Integer"/>
+	<parameter name="chequeType" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT oildb.cheques.checkno,
+	oildb.cheques.cheque_amount,
+	oildb.cheques.cheque_date,
+	oildb.bank.bank
+FROM oildb.cheques
+	INNER JOIN oildb.bank ON 
+	 oildb.cheques.bank_id = oildb.bank.id
+where  oildb.cheques.status = $P{chequeStatus} and  oildb.cheques.type = $P{chequeType}]]>
+	</queryString>
+	<field name="checkno" class="java.lang.String"/>
+	<field name="cheque_amount" class="java.lang.Double"/>
+	<field name="cheque_date" class="java.sql.Date"/>
+	<field name="bank" class="java.lang.String"/>
+	<variable name="status" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="94">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="110" backcolor="#52CC5A" uuid="066be057-b37d-48fa-bf11-99eae28815a0"/>
+				<staticText>
+					<reportElement x="20" y="14" width="410" height="43" forecolor="#FFFFFF" uuid="fc4dbd38-6792-47fa-aeec-92b36fbf5bd6"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[KALPANI OIL DILIVERS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="57" width="200" height="20" forecolor="#FFFFFF" uuid="5f940a8b-d5e1-4984-b426-66395d779a4e"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Aralaganvila, Polonnaruwa]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="360" y="64" width="217" height="20" forecolor="#FFFFFF" uuid="94f0bbdb-bf77-4b8b-83ce-11fc1055f936"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{chequeStatus}.intValue() == 0  ? "Pending Cheques" : "Dealed Cheques"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="359" y="86" width="220" height="20" forecolor="#FFFFFF" uuid="8b783dd0-eb7c-44b0-8a4b-77ec0504a66e"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{chequeType}.equals( "+" ) ? "Recive Cheques" : "Pay Cheques"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="32">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="141" height="32" backcolor="#52CC5A" uuid="c4bd72ad-56aa-4431-a81b-a1533cbdd0d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cheque Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="141" y="0" width="138" height="32" backcolor="#52CC5A" uuid="053007fd-4549-4ba8-88f0-ac3e40e7a802"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="279" y="0" width="138" height="32" backcolor="#52CC5A" uuid="d398d299-5fea-4cd6-833c-042022e58227"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cheque No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="417" y="0" width="138" height="32" backcolor="#52CC5A" uuid="ad569e6a-160f-4b6e-9b04-035de7dea8f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<textField>
+				<reportElement x="0" y="0" width="141" height="33" uuid="2fdbae9f-8251-4adb-a2c9-69f1d696ce8b"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cheque_date}.toLocalDate()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="33" uuid="2870da99-f201-4df6-a100-91e9c484e8ab"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bank}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="138" height="33" uuid="7db405c4-e528-441a-b850-d8c090030e45"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{checkno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="138" height="33" uuid="69ce8d48-a75d-445b-bcb6-ecb6aa2c7d8c"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cheque_amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="df48074b-5939-46b6-944b-23a41af9a86a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="633d44cc-e1fa-4990-9361-f88a3cc86e5f"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="1d0e78c0-66e9-41b4-b18a-01f79cd3abb0"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

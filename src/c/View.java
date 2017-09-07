@@ -138,7 +138,7 @@ public class View {
     
     public void setBackupPane(JDesktopPane comp) {
         comp.removeAll();
-        v.Backup instance = v.Backup.getInstance();
+        v.backup instance = v.backup.getInstance();
         instance.setSize(comp.getWidth(), comp.getHeight());
         comp.add("Status", instance);
         instance.setVisible(true);
