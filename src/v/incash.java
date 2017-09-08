@@ -491,7 +491,7 @@ public class incash extends javax.swing.JFrame {
                                         tot2 = (Math.round(tot2 * 100.0) / 100.0);
                                         System.out.println(tot2);
                                         Errormzg.displayconfirmMessage("Done");
-                                        new report.Psmodle().newInvoice(invid, totammount, tot2, paidcredit, addedcredit);
+                                         new report.Psmodle().newInvoice(invid, totammount, tot2, paidcredit, addedcredit);
                                         this.dispose();
                                     } else {
                                         Errormzg.displayerrorMessage("Unable to pay");

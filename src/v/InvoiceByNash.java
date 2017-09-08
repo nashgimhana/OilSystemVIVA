@@ -127,10 +127,10 @@ public class InvoiceByNash extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         lblunit = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         lblFullTotal = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -245,6 +245,8 @@ public class InvoiceByNash extends javax.swing.JPanel {
         });
         jPanel4.add(jButton4);
 
+        lblunit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -277,36 +279,6 @@ public class InvoiceByNash extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.getTableHeader().setFont(new Font(Font.SANS_SERIF,Font.TRUETYPE_FONT, 17));
-        jTable2.setRowHeight(25);
-        jTable2.setGridColor(c.View.getInstance().colorTheme);
-        jTable2.setShowVerticalLines(false);
-        jTable2.addMouseListener(c.CustomerListner.getInstance());
-        jTable2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTable2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Product", "Selling Price", "Qty", "Total"
-            }
-        ));
-        jScrollPane2.getViewport().setBackground(Color.WHITE);
-        jScrollPane2.getViewport().setBorder(null);
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 660, 330));
-
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton6.setText("Remove item");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -324,6 +296,18 @@ public class InvoiceByNash extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, -1, 20));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Products", "Sell Price", "Qty", "Total"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable2);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 700, 370));
 
         base1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 730, 430));
 
@@ -405,7 +389,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             findcusidbyname = ic.findCusIdByName(tfCustomer.getText());
             if (findcusidbyname != null) {
-                tfCustomer.setForeground(Color.green);
+                tfCustomer.setForeground(Color.blue);
             } else {
                 tfCustomer.setForeground(Color.red);
             }
@@ -529,7 +513,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton7MouseReleased
 
     private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
-        // TODO add your handling code here:
+         // TODO add your handling code here:
 
         incash in = new incash();
         if (findcusidbyname != null) {
@@ -549,11 +533,6 @@ public class InvoiceByNash extends javax.swing.JPanel {
         // TODO add your handling code here:
         clearAll();
     }//GEN-LAST:event_jButton1MouseReleased
-
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_jTable2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -577,7 +556,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblCurrentStock;
     private javax.swing.JLabel lblFullTotal;
