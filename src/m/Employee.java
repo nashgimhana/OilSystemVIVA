@@ -457,7 +457,7 @@ public class Employee {
 
     public void hilightRow(JTable tbl_ap) {
         new Date();
-        int rc = tbl_ap.getRowCount();
+        int rc = tbl_ap.getRowCount();        
         tbl_ap.setRowHeight(1);
         System.out.println(rc);
 
