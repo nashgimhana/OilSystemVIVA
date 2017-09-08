@@ -20,13 +20,17 @@ public class backup extends javax.swing.JPanel {
         initComponents();
         backup = ObjectGenarater.getBackup();
     }
-    
+
     private static backup Backup;
-    public static backup getInstance(){
-        if(Backup==null)Backup=new backup();
+
+    public static backup getInstance() {
+        if (Backup == null) {
+            Backup = new backup();
+        }
         return Backup;
     }
     Backup.Backup backup;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -178,11 +182,33 @@ public class backup extends javax.swing.JPanel {
 
     private void btnBrowes1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrowes1MouseReleased
         // TODO add your handling code here:
+        backup.chooseFile(txtPath1, v.Home.getInstance());
     }//GEN-LAST:event_btnBrowes1MouseReleased
 
     private void btnBackup1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackup1MouseReleased
         // TODO add your handling code here:
+        restoreDB("oildb", "root", "root");
     }//GEN-LAST:event_btnBackup1MouseReleased
+
+    public boolean restoreDB(String dbName, String dbUserName, String dbPassword) {
+        String[] executeCmd = new String[]{"C:\\Program Files (x86)\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", "--user=" + dbUserName, "--password=" + dbPassword, dbName, "-e",  txtPath1.getText()};
+        Process runtimeProcess;
+        try {
+            runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+            int processComplete = runtimeProcess.waitFor();
+            if (processComplete == 0) {
+                System.out.println("Backup restored successfully");
+                return true;
+            } else {
+                System.out.println("Could not restore the backup");
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
 
     private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
         // TODO add your handling code here:

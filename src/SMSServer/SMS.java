@@ -18,7 +18,7 @@ public class SMS {
     public void sendSMS(String receiverNumber, String message) {
         String[] para = {"COM9_9600_8_300_300_" + receiverNumber + "_" + message};
         try {
-            File f = new File("Parameter.txt");
+            File f = new File("D:\\Parameter.txt");
             if (f.exists()) {
                 f.delete();
             }

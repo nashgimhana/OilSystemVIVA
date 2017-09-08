@@ -96,6 +96,33 @@ public class Backup {
         }
     }
 
+    public void chooseFile(WebTextField txtPath, JFrame frame) {
+        try {
+            JFileChooser fc = new JFileChooser();
+            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fc.addChoosableFileFilter(new SqlFilter());
+            int returnVal = fc.showOpenDialog(frame);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                txtPath.setText(file.toString());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(frame, e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    class SqlFilter extends javax.swing.filechooser.FileFilter {
+
+        public boolean accept(File file) {
+            String filename = file.getName();
+            return filename.endsWith(".sql");
+        }
+
+        public String getDescription() {
+            return "*.sql";
+        }
+    }
+    
     public void getAction(WebTextField txtPath, JFrame frame) {
         String mgsError = "Database backup failure.can't find mysql dump ." + "Must be search mysql dump for get database backup.Please search him.";
         Toolkit.getDefaultToolkit().beep();
