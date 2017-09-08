@@ -89,6 +89,27 @@ public class Psmodle {
             e.printStackTrace();
         }
     }
+    
+    public void salreport(String month, String y) {
+
+//        System.out.println("============================"+inid);
+//        System.out.println("============================"+credit);
+        String path = "C:\\Program Files\\Common Files\\Report\\allmonthsal.jrxml"; 
+        try {
+            JasperReport RI = JasperCompileManager.compileReport(path);
+            Map<String, Object> parameter = new HashMap<String, Object>();
+            parameter.put("month", month);
+            parameter.put("y", y);
+        
+            JasperPrint printit = JasperFillManager.fillReport(RI, parameter, DB.getConnection());
+            new JRViewer(printit);
+            //JasperPrintManager.printReport(printit, false);
+            JasperViewer.viewReport(printit, false);
+        } catch (Exception e) {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+    }
 
     public void grn(int grnid) { //grn report
 

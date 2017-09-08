@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2017-09-08T14:42:58 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="allmonthsal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1e671575-13bb-434b-b60a-995d3e327987">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="month" class="java.lang.String"/>
+	<parameter name="y" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT oildb.employee.id,
+	oildb.employee.nic,
+	oildb.employee.fname,
+	oildb.basic_salery.pay,
+	oildb.basic_salery.updateday
+FROM oildb.basic_salery
+	INNER JOIN oildb.employee ON 
+	 oildb.basic_salery.employee_id = oildb.employee.id 
+	 WHERE MONTH(updateday) = $P{month}   AND YEAR(updateday) =  $P{y}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nic" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pay" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="updateday" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="tottal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{pay})]]></variableExpression>
+		<initialValueExpression><![CDATA[SUM($F{pay})]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="200" height="30" uuid="9e960347-c69a-4777-bb04-c524c20623c5"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Total Month Salary ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="50" height="20" uuid="df9a024d-e5f7-4f5b-8cae-641f24aa52cc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Month :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="36" width="50" height="21" uuid="eea56809-170a-4068-95f4-963643cd9b40"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Year :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="37" width="100" height="20" uuid="034666a2-af59-438c-870b-5654d9418876"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{y}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="37" width="60" height="20" uuid="5ad7f0f8-67c1-46ad-9877-b67d36a0d3b4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{month}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="59" width="555" height="1" uuid="ecee992d-3e4f-449b-b986-3b93fc120a9f"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="20" uuid="b574b8aa-151f-414f-8794-62df59d61a14"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="0" width="130" height="19" uuid="c2265688-6689-478f-b591-db338903067b"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[PAID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="1" width="100" height="19" uuid="c3bc2504-73d8-4d13-a096-5603e6894a3c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NIC]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="20" uuid="d6f1c310-682a-47c8-9763-df7caf0c1ca6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{updateday}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="1" width="130" height="20" uuid="375e2638-559a-4928-bb30-7ad3514a3a6f"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pay}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="20" uuid="647d5a57-e6e8-40f6-965d-ee59659f3a89"/>
+				<textFieldExpression><![CDATA[$F{nic}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="193" y="10" width="207" height="1" uuid="ca2899ad-baad-4fc2-92ca-4b5008a7e48a"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="425" y="0" width="130" height="20" uuid="7de34b52-e609-4e51-9d83-64a55fff5b22"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tottal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="0" width="40" height="20" uuid="f08cb013-a196-4634-a067-dc03c39599d8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
