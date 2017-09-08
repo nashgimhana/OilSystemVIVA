@@ -273,7 +273,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
 
         base1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 360, 430));
 
-        jPanel1.setBackground(new java.awt.Color(51, 204, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
