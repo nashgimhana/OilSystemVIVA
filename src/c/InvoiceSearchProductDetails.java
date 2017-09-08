@@ -73,13 +73,20 @@ public class InvoiceSearchProductDetails {
         }
     }
 
-    public void getProductDet(JComboBox<String> cmbProductList, JLabel lblCurrentStock, JTextField tfSellingPrice) {
+    public void getProductDet(JComboBox<String> cmbProductList, JLabel lblCurrentStock, JTextField tfSellingPrice, JLabel lblunit) {
         try {
             if (cmbProductList.getSelectedIndex() != 0) {
                 String ProductName = (String) cmbProductList.getSelectedItem();
                 ProductOb = new m.Product().getByName(ProductName);
+                Units units = new m.Units().getBy(ProductOb.getUnits().getId());
+                System.out.println("unit name" + units.getUnitName());
                 lblCurrentStock.setText(v.Employee.getRound(ProductOb.getCurrentStock()));
+                lblunit.setText(units.getUnitName());
                 tfSellingPrice.setText(v.Employee.getRound(ProductOb.getCurrentPrice()));
+            } else if (cmbProductList.getSelectedIndex() == 0) {
+                lblCurrentStock.setText("");
+                tfSellingPrice.setText("");
+                lblunit.setText("");
             }
 
         } catch (Exception e) {
