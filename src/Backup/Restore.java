@@ -37,9 +37,11 @@ public class Restore {
 
     public void getRestore(WebTextField txtPath, JFrame frame) {
         String mgsPath = "Please select the sql backup file.";
-        mysqlpath = restoreData.getMysqlPath();
+        getData.getSQLPath();
         getData.getConnectionInformation();
 
+        mysqlpath = restoreData.getMysqlPath();
+        System.out.println(mysqlpath);
         username = connectionInfo.getUsername();
         password = connectionInfo.getPassword();
 
@@ -47,14 +49,14 @@ public class Restore {
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(frame, mgsPath, "Databse restore", JOptionPane.WARNING_MESSAGE);
         } else {
-            restoreDB(username, password, txtPath.getText().toString(), txtPath, frame);
+            restoreDB(username, password, txtPath.getText(), txtPath, frame);
         }
     }
 
     public boolean restoreDB(String dbUserName, String dbPassword, String source, WebTextField txtPath, JFrame frame) {
         String mgsSucces = "Backup restore successfull.";
         String mgsBackup = "Backup restore faliure.";
-        String[] executeCmd = new String[]{"" + mysqlpath + "", "--user=" + dbUserName, "--password=" + dbPassword, "-e", "source " + source};
+        String[] executeCmd = new String[]{mysqlpath, "--user=" + dbUserName, "--password=" + dbPassword, "-e", "source " + source};
 
         Process runtimeProcess;
         try {
