@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import pojo.Customer;
-
+import pojo.Product;
 
 /**
  *
@@ -86,10 +86,11 @@ public class InvoiceAddToTable {
                 if (!tfCustomer.getText().isEmpty()) {
                     if (!tfQty.getText().isEmpty()) {
                         if (!tfSellingPrice.getText().isEmpty()) {
-
+                            double cstk =Double.parseDouble(lblCurrentStock.getText());
                             double qty = Double.parseDouble(tfQty.getText());
                             double selPrice = Double.parseDouble(tfSellingPrice.getText());
                             double curStock = Double.parseDouble(lblCurrentStock.getText());
+                            double newcstk = cstk-qty;
 
                             double tot = selPrice * qty;
                             DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
@@ -99,11 +100,18 @@ public class InvoiceAddToTable {
                             vv.add(tfQty.getText());
                             vv.add(v.Employee.getRound(tot));
                             dtm.addRow(vv);
+
+                            String ProductName = (String) cmbProductList.getSelectedItem();
+                            Product product = new m.Product().getByName(ProductName);
+                            product.setCurrentStock(newcstk);
+                            new m.Product().update(product);
+                            
+
                         } else {
                             JOptionPane.showConfirmDialog(base1, "PLEASE ENTER SEL PRICE !!", "confirm", 2);
                         }
                     } else {
-                        JOptionPane.showConfirmDialog(base1, "PLEASE ENTER QTY !!", "confirm", 2);
+                        c.Errormzg.displayconfirmMessage("PLEASE ENTER QTY");
                     }
                 } else {
                     JOptionPane.showConfirmDialog(base1, "PLEASE ENTER CUSTOMER ?", "confirm", 2);

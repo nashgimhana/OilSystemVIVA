@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import pojo.Product;
 
 /**
  *
@@ -45,7 +46,6 @@ public class InvoiceByNash extends javax.swing.JPanel {
     invoicecontroller ic;
 
     //new
-
     private static CustomerView customerView = null;
     //private CustomerTableView customerTableView = null;
 
@@ -125,6 +125,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
         tfSellingPrice = new javax.swing.JTextField();
         tfQty = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        lblunit = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -252,8 +253,9 @@ public class InvoiceByNash extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblunit, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,9 +265,13 @@ public class InvoiceByNash extends javax.swing.JPanel {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addComponent(lblunit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        base1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 320, 430));
+        base1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 360, 430));
 
         jPanel1.setBackground(new java.awt.Color(51, 204, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -288,13 +294,18 @@ public class InvoiceByNash extends javax.swing.JPanel {
         ));
         jScrollPane2.getViewport().setBackground(Color.WHITE);
         jScrollPane2.getViewport().setBorder(null);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(1).setResizable(false);
             jTable2.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 690, 330));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 660, 330));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton6.setText("Remove item");
@@ -314,7 +325,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, -1, 20));
 
-        base1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 730, 430));
+        base1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 730, 430));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel1.setText("FULL TOTAL");
@@ -355,8 +366,8 @@ public class InvoiceByNash extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(base1, javax.swing.GroupLayout.PREFERRED_SIZE, 1137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(base1, javax.swing.GroupLayout.DEFAULT_SIZE, 1147, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,7 +382,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
         // after selcted item ,loard grnlog data to jTable1:
         try {
             Searchproduct = new InvoiceSearchProductDetails();
-            Searchproduct.getProductDet(cmbProductList, lblCurrentStock, tfSellingPrice);
+            Searchproduct.getProductDet(cmbProductList, lblCurrentStock, tfSellingPrice, lblunit);
 
             tfQty.requestFocus();
         } catch (Exception e) {
@@ -461,7 +472,17 @@ public class InvoiceByNash extends javax.swing.JPanel {
         try {
             DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
             if (jTable2.getSelectedRow() >= 0) {
-                dtm.removeRow(jTable2.getSelectedRow());
+                int rw = jTable2.getSelectedRow();
+                String ProductName = (String) jTable2.getValueAt(rw, 0);
+                Product product = new m.Product().getByName(ProductName);
+                double qty = Double.parseDouble((String) jTable2.getValueAt(rw, 2));
+                double cstk = product.getCurrentStock();
+                double ncstk = cstk + qty;
+                product.setCurrentStock(ncstk);
+                new m.Product().update(product);
+                
+
+                dtm.removeRow(rw);
                 int rc = jTable2.getRowCount();
                 double ftot = 0.00;
                 for (int i = 0; i < rc; i++) {
@@ -480,13 +501,27 @@ public class InvoiceByNash extends javax.swing.JPanel {
     private void jButton7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseReleased
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+        String ProductName = null;
         if (jTable2.getRowCount() > 0) {
-            dtm.setRowCount(0);
             int rc = jTable2.getRowCount();
-            double ftot = 0.00;
             for (int i = 0; i < rc; i++) {
-                ftot += Double.parseDouble(jTable2.getValueAt(i, 3).toString());
+                ProductName = (String) jTable2.getValueAt(i, 0);
+                Product product = new m.Product().getByName(ProductName);
+                double cstk = product.getCurrentStock();
+                double qty = Double.parseDouble((String) jTable2.getValueAt(i, 2));
+                double ncstk = cstk + qty;
+
+                product.setCurrentStock(ncstk);
+                new m.Product().update(product);
+                
             }
+            dtm.setRowCount(0);
+
+            double ftot = 0.00;
+//            for (int i = 0; i < rc; i++) {
+//
+//                ftot += Double.parseDouble(jTable2.getValueAt(i, 3).toString());
+//            }
             lblFullTotal.setText(v.Employee.getRound(ftot));
         } else {
             JOptionPane.showMessageDialog(null, "No Selected Row! Please add one more.", "Row Remove", JOptionPane.WARNING_MESSAGE);
@@ -515,6 +550,11 @@ public class InvoiceByNash extends javax.swing.JPanel {
         clearAll();
     }//GEN-LAST:event_jButton1MouseReleased
 
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jTable2MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChooser;
@@ -541,6 +581,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblCurrentStock;
     private javax.swing.JLabel lblFullTotal;
+    private javax.swing.JLabel lblunit;
     private javax.swing.JTextField tfCustomer;
     private javax.swing.JTextField tfQty;
     private javax.swing.JTextField tfSellingPrice;
