@@ -47,13 +47,15 @@ public class Psmodle {
 
     public void invoiceReport(int inid, double credit, double payedValue) {
 
-        System.out.println("============================" + inid);
+        
+        
+      //  System.out.println("============================" + inid);
         System.out.println("============================" + credit);
 
         String path = "C:\\Program Files\\Common Files\\Report\\in.jrxml";
         try {
             JasperReport RI = JasperCompileManager.compileReport(path);
-            Map<String, Object> parameter = new HashMap<String, Object>();
+            Map<String, Object> parameter = new HashMap<String, Object>();          
             parameter.put("inid", inid);
             parameter.put("credit", credit);
             parameter.put("payedValue", payedValue);
