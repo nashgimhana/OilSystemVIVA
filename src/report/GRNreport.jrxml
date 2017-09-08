@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2017-09-07T20:10:55 -->
+<!-- 2017-09-08T13:14:48 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GRNreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9215bafe-5dfd-4625-8e2f-0a1f0d69fcba">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="grnid" class="java.lang.Integer">
@@ -34,13 +34,13 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="98" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<staticText>
-				<reportElement x="202" y="10" width="150" height="30" uuid="4c829e2f-b1d4-4dfa-8156-25c880c4dc15"/>
+				<reportElement x="202" y="0" width="150" height="50" uuid="4c829e2f-b1d4-4dfa-8156-25c880c4dc15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[GRN Report]]></text>
+				<text><![CDATA[KALPANI Oill  GRN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="60" width="70" height="20" uuid="be1db165-3042-4f4c-b8cb-4fba7ad3f175"/>
@@ -63,10 +63,13 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="53" width="550" height="1" uuid="e1a7f9e3-d409-4ccf-9f9c-e155be9ee871"/>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="115" splitType="Stretch">
+		<band height="116" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="70" height="20" uuid="df9ce879-c1ad-4d4a-8f3c-a9987f0260ac"/>
 				<textElement verticalAlignment="Middle">
@@ -144,6 +147,12 @@
 				</textElement>
 				<text><![CDATA[Kg]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="74" width="550" height="1" uuid="98993372-760b-4007-baec-33b9646ad035"/>
+			</line>
+			<line>
+				<reportElement x="0" y="110" width="550" height="1" uuid="f0d0d73a-fc3b-4747-b0a9-2cb2a3e6aecb"/>
+			</line>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -159,14 +168,17 @@
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="37" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<staticText>
-				<reportElement x="200" y="6" width="160" height="24" uuid="23cbeb45-09bc-4ffc-b72a-e27ab340acd7"/>
+				<reportElement x="200" y="5" width="160" height="17" uuid="23cbeb45-09bc-4ffc-b72a-e27ab340acd7"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[XOcode Software Team]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="-1" width="550" height="1" uuid="d24adfaf-cecd-4c6e-9f97-75fbb064c815"/>
+			</line>
 		</band>
 	</summary>
 </jasperReport>
