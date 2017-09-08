@@ -452,15 +452,16 @@ public class Employee {
         } finally {
             ses.close();
         }
-        //hilightRow(tbl_ap);
+     //  hilightRow(tbl_ap);
     }
 
-//    public void hilightRow(JTable tbl_ap) {
-//        new Date();
-//        int rc = tbl_ap.getRowCount();
-//        System.out.println(rc);
-//
-//    }
+    public void hilightRow(JTable tbl_ap) {
+        new Date();
+        int rc = tbl_ap.getRowCount();        
+        tbl_ap.setRowHeight(1);
+        System.out.println(rc);
+
+    }
 
     public void deleteEmploy(JLabel lbl_empid) {
         if (lbl_empid.getText() != "00") {

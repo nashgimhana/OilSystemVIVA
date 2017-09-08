@@ -249,8 +249,6 @@ public class Employee extends javax.swing.JPanel {
         jPanel16 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         lb_tot = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        lb_nic1 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         lb_basic = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -1426,12 +1424,6 @@ public class Employee extends javax.swing.JPanel {
         lb_tot.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lb_tot.setText("00");
 
-        jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel40.setText("Nic :");
-
-        lb_nic1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lb_nic1.setText("00");
-
         jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel43.setText("Basic :");
 
@@ -1503,28 +1495,20 @@ public class Employee extends javax.swing.JPanel {
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel58))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGap(0, 65, Short.MAX_VALUE)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel16Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel58))
-                            .addGroup(jPanel16Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel47)
-                                    .addComponent(jLabel51)
-                                    .addComponent(jLabel45)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel55)
-                                    .addComponent(jLabel43))))
-                        .addGap(27, 27, 27))
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel40)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lb_nic1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel47)
+                            .addComponent(jLabel51)
+                            .addComponent(jLabel45)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel55)
+                            .addComponent(jLabel43))))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(lb_date)
@@ -1541,7 +1525,7 @@ public class Employee extends javax.swing.JPanel {
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_bonus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lb_totpay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lb_daytot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lb_daytot, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                             .addComponent(lb_ottot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lb_tot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lb_cutcredit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1552,10 +1536,7 @@ public class Employee extends javax.swing.JPanel {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel40)
-                    .addComponent(lb_nic1)
-                    .addComponent(lb_date))
+                .addComponent(lb_date)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_basic)
@@ -2466,7 +2447,6 @@ public class Employee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel45;
@@ -2550,7 +2530,6 @@ public class Employee extends javax.swing.JPanel {
     private javax.swing.JLabel lb_emtype;
     private javax.swing.JLabel lb_enic;
     private javax.swing.JLabel lb_etype;
-    private javax.swing.JLabel lb_nic1;
     private javax.swing.JLabel lb_nic2;
     private javax.swing.JLabel lb_othours;
     private javax.swing.JLabel lb_otrage;
