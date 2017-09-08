@@ -14,6 +14,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -120,7 +121,7 @@ public class Customer {
     public List<pojo.Customer> getAll() {
         Session ses = sessionFactory.openSession();
         try {
-            List<pojo.Customer> list = ses.createCriteria(pojo.Customer.class).list();
+            List<pojo.Customer> list = ses.createCriteria(pojo.Customer.class).addOrder(Order.asc("nic")).list();
             return list;
         } catch (Exception e) {
             e.printStackTrace();

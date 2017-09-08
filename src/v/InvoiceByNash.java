@@ -83,12 +83,39 @@ public class InvoiceByNash extends javax.swing.JPanel {
         tfQty.setText(null);
         tfCustomer.setText(null);
 
-        DefaultTableModel model = (DefaultTableModel) this.jTable2.getModel();
-        model.setRowCount(0);
         tfCustomer.setText(null);
         lblFullTotal.setText("");
         findcusidbyname = null;
 
+    }
+
+    public void cleartbl() {
+        DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+        String ProductName = null;
+        try {
+            if (jTable2.getRowCount() > 0) {
+                int rc = jTable2.getRowCount();
+                for (int i = 0; i < rc; i++) {
+                    ProductName = (String) jTable2.getValueAt(i, 0);
+                    Product product = new m.Product().getByName(ProductName);
+                    double cstk = product.getCurrentStock();
+                    double qty = Double.parseDouble((String) jTable2.getValueAt(i, 2));
+                    double ncstk = cstk + qty;
+
+                    product.setCurrentStock(ncstk);
+                    new m.Product().update(product);
+
+                }
+                dtm.setRowCount(0);
+
+                double ftot = 0.00;
+
+                lblFullTotal.setText(v.Employee.getRound(ftot));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void cheque() {
@@ -245,7 +272,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
         });
         jPanel4.add(jButton4);
 
-        lblunit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblunit.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -257,7 +284,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblunit, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
+                .addComponent(lblunit, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +300,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        base1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 360, 430));
+        base1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 370, 430));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -307,9 +334,9 @@ public class InvoiceByNash extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 700, 370));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 690, 370));
 
-        base1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 730, 430));
+        base1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 720, 430));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel1.setText("FULL TOTAL");
@@ -464,7 +491,6 @@ public class InvoiceByNash extends javax.swing.JPanel {
                 double ncstk = cstk + qty;
                 product.setCurrentStock(ncstk);
                 new m.Product().update(product);
-                
 
                 dtm.removeRow(rw);
                 int rc = jTable2.getRowCount();
@@ -497,15 +523,12 @@ public class InvoiceByNash extends javax.swing.JPanel {
 
                 product.setCurrentStock(ncstk);
                 new m.Product().update(product);
-                
+
             }
             dtm.setRowCount(0);
 
             double ftot = 0.00;
-//            for (int i = 0; i < rc; i++) {
-//
-//                ftot += Double.parseDouble(jTable2.getValueAt(i, 3).toString());
-//            }
+
             lblFullTotal.setText(v.Employee.getRound(ftot));
         } else {
             JOptionPane.showMessageDialog(null, "No Selected Row! Please add one more.", "Row Remove", JOptionPane.WARNING_MESSAGE);
@@ -513,7 +536,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton7MouseReleased
 
     private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
-         // TODO add your handling code here:
+        // TODO add your handling code here:
 
         incash in = new incash();
         if (findcusidbyname != null) {
@@ -531,6 +554,7 @@ public class InvoiceByNash extends javax.swing.JPanel {
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         // TODO add your handling code here:
+        cleartbl();
         clearAll();
     }//GEN-LAST:event_jButton1MouseReleased
 

@@ -71,6 +71,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -220,6 +223,11 @@ public class Home extends javax.swing.JFrame {
             c.View.getInstance().setViewToDPane(dpnl_contain, dpnl_contain.getComponent(0));
         }
     }//GEN-LAST:event_formComponentResized
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowClosing
 
 
     /**
