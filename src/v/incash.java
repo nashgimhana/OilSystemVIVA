@@ -492,6 +492,8 @@ public class incash extends javax.swing.JFrame {
                                         System.out.println(tot2);
                                         Errormzg.displayconfirmMessage("Done");
                                          new report.Psmodle().newInvoice(invid, totammount, tot2, paidcredit, addedcredit);
+                                         new v.InvoiceByNash().clearAll();
+                                         new v.InvoiceByNash().clearTf();
                                         this.dispose();
                                     } else {
                                         Errormzg.displayerrorMessage("Unable to pay");

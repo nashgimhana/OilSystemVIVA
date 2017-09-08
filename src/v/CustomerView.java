@@ -453,6 +453,11 @@ public class CustomerView extends javax.swing.JPanel {
 
         txt_cheque_amount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_cheque_amount.addKeyListener(c.CustomerListner.getInstance());
+        txt_cheque_amount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_cheque_amountKeyTyped(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("Amount");
@@ -818,6 +823,11 @@ public class CustomerView extends javax.swing.JPanel {
          // TODO add your handling code here:
           m.Employee.validateDouble(txt_cash_amount, evt);
     }//GEN-LAST:event_txt_cash_amountKeyTyped
+
+    private void txt_cheque_amountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cheque_amountKeyTyped
+         // TODO add your handling code here:
+         m.Employee.validateDouble(txt_cheque_amount, evt);
+    }//GEN-LAST:event_txt_cheque_amountKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
