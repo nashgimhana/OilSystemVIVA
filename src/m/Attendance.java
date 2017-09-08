@@ -219,7 +219,7 @@ public class Attendance {
                 JOptionPane.showMessageDialog(null, "Attendance Mark Successfull");
 
             } else {
-                int confermcode = JOptionPane.showConfirmDialog(null, "Are You shuwar to update this");
+                int confermcode = JOptionPane.showConfirmDialog(null, "Are you sure to update this");
                 if (confermcode == 0) {
                     String input = JOptionPane.showInputDialog(null, "Enter Password :");
                     if (input.equals("admin")) { // methenta dana passwordk eka passe data base eken load karala ganna
