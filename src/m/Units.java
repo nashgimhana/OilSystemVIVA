@@ -32,7 +32,7 @@ public class Units {
             cr.add(Restrictions.eq("id", id));
             uni= (pojo.Units) cr.uniqueResult();
         } catch (Exception e) {
-        }
+        } 
         return uni;
     }
 
