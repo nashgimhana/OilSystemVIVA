@@ -20,6 +20,7 @@ public class backup extends javax.swing.JPanel {
     private backup() {
         initComponents();
         backup = ObjectGenarater.getBackup();
+        restore = ObjectGenarater.getRestore();
     }
 
     private static backup Backup;

@@ -78,4 +78,11 @@ public class ObjectGenarater {
         }
         return restoreData;
     }
+
+    public static Restore getRestore() {
+        if (restore == null) {
+            restore = new Restore();
+        }
+        return restore;
+    }
 }
