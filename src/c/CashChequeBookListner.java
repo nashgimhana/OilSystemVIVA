@@ -152,7 +152,7 @@ public class CashChequeBookListner extends MouseAdapter implements ComponentList
     }
 
     public boolean setChequeDealDate(Date chequeDealDate) {
-        this.chequeDealDate = cashDealDate;
+        this.chequeDealDate = chequeDealDate;
         if (this.chequeDealDate != null) {
             return true;
         } else {

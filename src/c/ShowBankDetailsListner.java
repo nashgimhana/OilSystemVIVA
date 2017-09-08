@@ -57,9 +57,11 @@ public class ShowBankDetailsListner implements ComponentListener, MouseListener 
     @Override
     public void componentShown(ComponentEvent e) {
         if (e.getComponent() == this.getShowBankDetailsView()) {
-            Date date = new Date();
+            Date to = new Date();
             this.loadBank();
-            this.loadDetailsByDateRange(date, new Date(date.getTime() - (1000 * 60 * 60 * 24 * 30)));
+            Date from = new Date(to.getTime() + (long)(1000 * 60 * 60 * 24 * 30));
+            System.out.println(from+"----"+to);
+            this.loadDetailsByDateRange(from,to);
         }
     }
 
