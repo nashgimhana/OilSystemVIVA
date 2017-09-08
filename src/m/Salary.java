@@ -185,6 +185,7 @@ public class Salary {
                 lb_ottot.setText(v.Employee.getRound(bc.getHoures() * bc.getPerOtHoure()));
                 //month
                 Date updateday = bc.getUpdateday();
+                String mo = bc.getBasicSalerycol(); // paymant ekata adala masaya 
                 SimpleDateFormat smd = new SimpleDateFormat("MM");
                 SimpleDateFormat smd2 = new SimpleDateFormat("yyyy-MM-dd");
                 String date = smd2.format(updateday);
@@ -192,11 +193,11 @@ public class Salary {
                 String month = smd.format(updateday);
                 //month
                 lb_date.setText(date);
-                lb_daytot.setText(v.Employee.getRound(bc.getPerDay() * getAttendCountByEmpPerMont(month)));
+                lb_daytot.setText(v.Employee.getRound(bc.getPerDay() * getAttendCountByEmpPerMont(mo))); // month eka mo widiyata wenas kala
                 lb_otrage.setText(v.Employee.getRound(bc.getPerOtHoure()));
                 lb_othours.setText(v.Employee.getRound(bc.getHoures()));
                 lb_dayrate.setText(v.Employee.getRound(bc.getPerDay()));
-                lb_days.setText(getAttendCountByEmpPerMont(month) + "");
+                lb_days.setText(getAttendCountByEmpPerMont(mo) + ""); // month eka mo widiyata wenas kala
                 lb_tot.setText(v.Employee.getRound(bc.getTotal()));
                 lb_cutcredit.setText(v.Employee.getRound(bc.getMainusDebit()));
                 lb_totpay.setText(v.Employee.getRound(bc.getPay()));
@@ -232,11 +233,13 @@ public class Salary {
     
     public void paySalary(JComboBox jcomb_month, JLabel tf_nic2, JTextField tf_basic, JTextField tf_bonas, JTextField tf_ot_hours, JTextField tf_ot_rate, JTextField tf_ot_tot, JTextField tf_days, JTextField tf_day_rate, JTextField tf_day_tot, JTextField tf_total, JTextField tf_debit, JTextField tf_pay_tot) {
 
-        String month, year;
+        String month = jcomb_month.getSelectedItem().toString();
+        String year;
         Date in, to;
         pojo.Employee empo = null;
         boolean bb = false;
         Session sess = conn.NewHibernateUtil.getSessionFactory().openSession();
+        
         try {
             month = jcomb_month.getSelectedItem().toString();
             SimpleDateFormat ye = new SimpleDateFormat("yyyy");
@@ -293,7 +296,8 @@ public class Salary {
                 bs.setMainusDebit(v.Employee.getRoundDouble(debit));
                 bs.setTotal(v.Employee.getRoundDouble(total));
                 bs.setPay(v.Employee.getRoundDouble(pay));
-                bs.setUpdateday(new Date());// meken currnet date eka yanawa one unoth wenas karamu        
+                bs.setUpdateday(new Date());// meken currnet date eka yanawa one unoth wenas karamu  
+                bs.setBasicSalerycol(month); // salary pay karana month eka
                 //  String date = sdf.format(new Date());
                 bs.setStatus(1);
                 double curentcredit = employee1.getCurrentCredit() - debit;
