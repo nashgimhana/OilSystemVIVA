@@ -6,6 +6,7 @@
 package v;
 
 import Backup.ObjectGenarater;
+import Backup.Restore;
 
 /**
  *
@@ -22,6 +23,7 @@ public class backup extends javax.swing.JPanel {
     }
 
     private static backup Backup;
+    
 
     public static backup getInstance() {
         if (Backup == null) {
@@ -30,6 +32,7 @@ public class backup extends javax.swing.JPanel {
         return Backup;
     }
     Backup.Backup backup;
+    Restore restore;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,12 +185,12 @@ public class backup extends javax.swing.JPanel {
 
     private void btnBrowes1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrowes1MouseReleased
         // TODO add your handling code here:
-        backup.chooseFile(txtPath1, v.Home.getInstance());
+        restore.chooseFile(txtPath1, v.Home.getInstance());
     }//GEN-LAST:event_btnBrowes1MouseReleased
 
     private void btnBackup1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackup1MouseReleased
         // TODO add your handling code here:
-        restoreDB("oildb", "root", "root");
+        restore.getRestore(txtPath1, v.Home.getInstance());
     }//GEN-LAST:event_btnBackup1MouseReleased
 
     public boolean restoreDB(String dbName, String dbUserName, String dbPassword) {

@@ -16,6 +16,8 @@ public class ObjectGenarater {
     private static ConnectionInfo connectionInfo;
     private static GetData getData;
     private static Backup backup;
+    private static Restore restore;
+    private static RestoreData restoreData;
 
     /**
      * @return the backupData
@@ -55,5 +57,25 @@ public class ObjectGenarater {
             backup = new Backup();
         }
         return backup;
+    }
+
+    /**
+     * @return the restore_01
+     */
+    public static Restore getRestoreC() {
+        if (restore == null) {
+            restore = new Restore();
+        }
+        return restore;
+    }
+
+    /**
+     * @return the restoreData
+     */
+    public static RestoreData getRestoreData() {
+        if (restoreData == null) {
+            restoreData = new RestoreData();
+        }
+        return restoreData;
     }
 }
