@@ -190,6 +190,9 @@
                               </Border>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="contact1KeyTyped"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="contact2">
                           <Properties>
@@ -204,6 +207,9 @@
                               </Border>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="contact2KeyTyped"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="contact3">
                           <Properties>
@@ -220,6 +226,7 @@
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="contact3ActionPerformed"/>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="contact3KeyTyped"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtcrntcrdt">

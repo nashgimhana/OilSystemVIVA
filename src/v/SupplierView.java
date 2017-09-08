@@ -146,10 +146,20 @@ public class SupplierView extends javax.swing.JPanel {
 
         contact1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contact1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 0)));
+        contact1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                contact1KeyTyped(evt);
+            }
+        });
         jPanel6.add(contact1);
 
         contact2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contact2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 0)));
+        contact2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                contact2KeyTyped(evt);
+            }
+        });
         jPanel6.add(contact2);
 
         contact3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -157,6 +167,11 @@ public class SupplierView extends javax.swing.JPanel {
         contact3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contact3ActionPerformed(evt);
+            }
+        });
+        contact3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                contact3KeyTyped(evt);
             }
         });
         jPanel6.add(contact3);
@@ -515,6 +530,36 @@ public class SupplierView extends javax.swing.JPanel {
         tableView = new SupplierTableView();
         tableView.setTableData(jTable1);
     }//GEN-LAST:event_jPanel1MouseMoved
+
+    private void contact1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contact1KeyTyped
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        if (!(Character.isDigit(vChar)
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE) || vChar == KeyEvent.VK_PERIOD)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_contact1KeyTyped
+
+    private void contact2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contact2KeyTyped
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        if (!(Character.isDigit(vChar)
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE) || vChar == KeyEvent.VK_PERIOD)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_contact2KeyTyped
+
+    private void contact3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contact3KeyTyped
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        if (!(Character.isDigit(vChar)
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE) || vChar == KeyEvent.VK_PERIOD)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_contact3KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
